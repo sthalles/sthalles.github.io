@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "A Short Introduction to Generative Adversarial Networks"
-date:   2017-06-01 10:00:00 -0300
+date:   2017-06-07 10:00:00 -0300
 categories: deep learning
 short_description: "GANs are a kind of generative model in which two differentiable functions are locked in a game. The generator tries to reproduce data that come from some probability distribution. The discriminator gets to decide if its input comes from the generator or from the true training set."
 image_url: "./assets/dcgan/generator-model.png"
@@ -30,7 +30,7 @@ GANs are a kind of generative model designed by [Ian Goodfellow](https://arxiv.o
     <img class="img-responsive" src="{{ site.url }}/assets/dcgan/mnist-training.gif" alt="MNIST training evolution">
   </div>
   <div class="col-xs-12" style="text-align: center;">
-    <p class="caption">SVHN's (left) and MNIST (right) generator samples during training.</p>
+    <p class="caption">We used a 4 layer convolution network for (both discriminator and generator) with batch normalization to teach a model to generate SVHNs and MNIST images. Above, are the SVHN's (left) and MNIST (right) generator samples during training.</p>
   </div>
 </div>
 
@@ -180,6 +180,6 @@ GANs are, with no doubt, one of the hottest subjects in machine learning right n
  
 There has been a lot of advancements in training GANs to achieve state-of-the-art results, some of them can be found at [Improved Techniques for Training GANs](https://arxiv.org/abs/1606.03498), where the authors describe some advanced techniques for both image generation and unsupervised learning training with GANs.
  
-In addition, there are two very good blog posts that really inspired me when learning to understand how GANs function: [Generative Models](https://blog.openai.com/generative-models/#gan) and [Generative Adversarial Networks Explained with a Classic Spongebob Squarepants Episode](https://medium.com/@awjuliani/generative-adversarial-networks-explained-with-a-classic-spongebob-squarepants-episode-54deab2fce39).
+In addition, there are two very good blog posts that really inspired me when learning to understand how GANs work: [Generative Models](https://blog.openai.com/generative-models/#gan) and [Generative Adversarial Networks Explained with a Classic Spongebob Squarepants Episode](https://medium.com/@awjuliani/generative-adversarial-networks-explained-with-a-classic-spongebob-squarepants-episode-54deab2fce39).
  
 Enjoy!
