@@ -1,46 +1,37 @@
+
 <footer class="site-footer">
 
-  <div class="wrapper">
+  <div class="container">
 
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li>
-            {% if site.author %}
+    <div class="row">
+      <div class="col-xs-12">
+        <span> 
+          {% if site.copyright %}
+              {{site.copyright | escape}}
+          {% endif %}
+          {% if site.author %}
               {{ site.author | escape }}
-            {% else %}
-              {{ site.title | escape }}
-            {% endif %}
-            </li>
-            {% if site.email %}
-            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-            {% endif %}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          {% if site.github_username %}
-          <li>
-            {% include icon-github.html username=site.github_username %}
-          </li>
           {% endif %}
-
-          {% if site.twitter_username %}
-          <li>
-            {% include icon-twitter.html username=site.twitter_username %}
-          </li>
-          {% endif %}
-        </ul>
+        </span>
       </div>
-
-      <div class="footer-col footer-col-3">
-        <p>{{ site.description | escape }}</p>
+      
+      <div class="col-xs-12">
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      </div>
+      
+      <div class="col-xs-12">
+        <a href="https://github.com/sthalles/resume/blob/master/English-Shortened/resume.pdf">Résumé </a>
+        <a href="https://github.com/sthalles">Github </a>
+        <a href="https://www.linkedin.com/in/thalles-silva-32ab08a3/">Linkedin </a>
       </div>
     </div>
 
   </div>
+  
+  <script src="{{ site.baseurl }}/js/jquery.min.js"></script>
+  <script src="{{ site.baseurl }}/js/bootstrap.min.js"></script>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="{{ site.baseurl }}/controllers/app.js"></script>
+  <script src="{{ site.baseurl }}/controllers/index.js"></script>
 </footer>

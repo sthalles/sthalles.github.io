@@ -1,0 +1,18 @@
+/**
+ * Site footer
+ */
+.site-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  border-top: 1px solid $grey-color-light;
+  padding: $spacing-unit 0;
+  font-size: $very-small-font-size !important;
+  /* Set the fixed height of the footer here */
+  height: 70px !important;
+  background-color: $primary-color-lighter50;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+}
+
