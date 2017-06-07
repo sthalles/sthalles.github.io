@@ -1,0 +1,37 @@
+
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <span> 
+          {% if site.copyright %}
+              {{site.copyright | escape}}
+          {% endif %}
+          {% if site.author %}
+              {{ site.author | escape }}
+          {% endif %}
+        </span>
+      </div>
+      
+      <div class="col-xs-12">
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      </div>
+      
+      <div class="col-xs-12">
+        <a href="https://github.com/sthalles/resume/blob/master/English-Shortened/resume.pdf">Résumé </a>
+        <a href="https://github.com/sthalles">Github </a>
+        <a href="https://www.linkedin.com/in/thalles-silva-32ab08a3/">Linkedin </a>
+      </div>
+    </div>
+
+  </div>
+  
+  <script src="{{ site.baseurl }}/js/jquery.min.js"></script>
+  <script src="{{ site.baseurl }}/js/bootstrap.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="{{ site.baseurl }}/controllers/app.js"></script>
+  <script src="{{ site.baseurl }}/controllers/index.js"></script>
+</footer>

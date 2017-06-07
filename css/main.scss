@@ -1,0 +1,65 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+/* path to glyphicons */
+$icon-font-path: "bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+
+/* custom variable */
+$base-font-family:          "Roboto", sans-serif !default;
+$base-font-weight:          300 !default;
+$small-font-weight:         200 !default;
+$base-font-size:            18px !default;
+$small-font-size:           $base-font-size * 0.80 !default;
+$very-small-font-size:      $base-font-size * 0.65 !default;
+$large-font-size:           $base-font-size * 1.25 !default;
+$base-line-height:          1.5 !default;
+$spacing-unit:              30px !default;
+
+$secondary-color:           #3F51B5 !default;
+$secondary-color-darker800: #283593 !default;
+
+$primary-color:             #607D8B !default;
+$primary-color-lighter50:   #ECEFF1 !default;
+$primary-color-lighter100:  #CFD8DC !default;
+$primary-color-darker800:   #37474F !default;
+$primary-color-darker900:   #263238 !default;
+
+$text-color_:               #263238 !default;                     
+$primary-text-color:        lighten($text-color_, 13%) !default;
+$secondary-text-color:      lighten($text-color_, 46%) !default;
+$disabled-text-color:       lighten($text-color_, 62%) !default;
+                 
+$inverse-primary-text-color:        $primary-color-lighter50 !default;
+$inverse-secondary-text-color:      darken($inverse-primary-text-color, 30%) !default;
+$inverse-disabled-text-color:       darken($inverse-primary-text-color, 50%) !default;
+
+$background-color:          #fdfdfd !default;
+
+$grey-color:       #828282 !default;
+$grey-color-light: lighten($grey-color, 40%) !default;
+$grey-color-dark:  darken($grey-color, 25%) !default;
+
+$foot-background-color:     $primary-color-darker800 !default;
+$navbar-background-color:   $primary-color-darker800 !default;
+
+$on-laptop:        800px !default;
+$on-palm:          600px !default;
+
+
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+@mixin relative-font-size($ratio) {
+  font-size: $base-font-size * $ratio;
+}
+
+/* any style customization must be before the bootstrap import */
+@import "bootstrap";
+@import "index";
+@import "syntax-highlighting";
+@import "footer";
