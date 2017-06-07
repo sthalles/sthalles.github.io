@@ -49,4 +49,4 @@ include: ['_pages']
 kramdown:
   input: GFM
 permalink: /:title/
-google_analytics: UA-NNNNNNNN-N
+google_analytics: UA-100678030-1

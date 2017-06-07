@@ -34,9 +34,6 @@ GANs are a kind of generative model designed by [Ian Goodfellow](https://arxiv.o
   </div>
 </div>
 
-
-
-
 In summary, the game follows with the generator trying to maximize the probability of making the discriminator mistakes its inputs as real samples while the discriminator is guiding the generator to approximate its samples to the real data distribution. In the perfect equilibrium, the generator would capture the training data distribution which would make the discriminator always unsure whether the generator’s samples are real or not.
 
 Without more ado, let’s dive into the details of the implementation and talk more about GANs as we go. We will discuss the main steps of building a Deep Convolutional Generative Adversarial Network (DCGAN) using Tensorflow based on the original [paper](https://arxiv.org/abs/1511.06434).
