@@ -156,6 +156,30 @@ ul, ol, dl, figure,
 
 .navbar-right-links {
   font-weight: $small-font-weight;
+  border: none;
 }
 
+.share-icons-container a:hover, a:active, a:focus{
+  color: transparent !important;
+  text-decoration: none;
+}
 
+.share-icons-container i {
+  color: $disabled-text-color !important;
+}
+
+i.linkedin-hover-color:hover {
+  color: #0077B5 !important;
+}
+
+i.facebook-hover-color:hover {
+  color: #3b5998 !important;
+}
+
+i.googleplus-hover-color:hover {
+  color: #D34836 !important;
+}
+
+i.twitter-hover-color:hover {
+  color: #0084b4 !important;
+}
