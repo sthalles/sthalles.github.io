@@ -12,7 +12,10 @@ Let's say there is this very cool party going on at your neighborhood, you reall
 There is a big problem with this plan though, you never actually saw how the ticket looks like, so even if you design a ticket based solely on your creativity, you know it’s almost impossible to fool the party security at your first trial. In addition, because you do not want to show off your face to the guards until you have a very decent replica of the ticket, you call out your friend Bob to do the dirty job for you. Bob’s mission is very simple, he will try to get into the party with your fake ticket and if he gets denied, he will come back to you at your office with tips regarding how the ticket should look like. Based on these tips, you make a new version of the ticket and hands it to Bob that goes to do the same. This process keeps repeating until you become able to design a perfect replica capable of fooling the security and therefore, allowing you and your friend Bob inside the party.
 
 
-
+<figure>
+  <img class="img-responsive center-block" src="{{ site.url }}/assets/dcgan/fake-ticket.jpg" alt="Fake ticket">
+  <figcaption class="caption center"> That is a must go party. I actually took that image from a fake ticket generator website! </figcaption>
+</figure>
 
 Putting aside the “small holes” on this anecdote, this is how Generative Adversarial Networks (GANs) kind of work. Most of the applications of GANs nowadays are in the domain of computer vision. GANs have been used to address a lot of problems such as training classifiers in a semi-supervised learning manner and to get high resolution images from low resolution ones. This article is intended to provide a quick introduction to GANs as well as to offer a hands on in the problem of generating images.
  
