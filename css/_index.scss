@@ -51,7 +51,11 @@ body {
   font-size: $small-font-size;
 }
 
-
+strong em {
+  font-style: normal;
+  font-weight: $large-font-weight !important;
+  background-color: $secondary-color-lighter100;
+}
 
 a.light:hover {
   color: white !important;
@@ -198,7 +202,6 @@ i.twitter-hover-color:hover {
 .post-description {
   padding-top: 20px;
   padding-bottom: 10px;
-  font-weight: $small-font-weight;
 }
 
 .post-image {
