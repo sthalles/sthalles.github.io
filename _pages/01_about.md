@@ -6,6 +6,6 @@ permalink: /about/
 
 ## Thalles Silva
 
-A software engenieer wandering in the world of Artificial Inteligence. 
+Wandering in the world of Machine Learning. 
 
-[Resume](https://github.com/sthalles/resume/blob/master/English-Shortened/resume.pdf), [Github](https://github.com/sthalles), [Linkedin](https://www.linkedin.com/in/thalles-silva-32ab08a3/).
+[Résumé](https://github.com/sthalles/resume/blob/master/English-Shortened/resume.pdf), [Github](https://github.com/sthalles), [Linkedin](https://www.linkedin.com/in/thalles-silva-32ab08a3/).
