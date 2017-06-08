@@ -7,7 +7,7 @@ short_description: "GANs are a kind of generative model in which two differentia
 image_url: "/assets/dcgan/GANs.png"
 ---
 
-First off, the notebook for this post can be found [here](https://github.com/sthalles/blog-resources/blob/master/dcgan/DCGAN.ipynb).
+The notebook for this post can be found [here](https://github.com/sthalles/blog-resources/blob/master/dcgan/DCGAN.ipynb).
 
 Let's say there is this very cool party going on at your neighborhood, you really wanted to be there but there is a problem, to get into the party you need a special ticket that was long sold out. Considering you are especially eager to go to this party, you decide to do something about it. Since the expectations are very high and people are long waiting for the party to happen, the organization decided to hire a very qualified agency for party security. Their primary goal is to not allow anyone to crash the party. To accomplish that, they placed a lot of security guards at the entrance of the party to meticulously check everyone’s tickets for authenticity. As long as you are not any martial artistic master, the only way to get through the security is by fooling them with a fake ticket.
  
