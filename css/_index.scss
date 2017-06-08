@@ -51,9 +51,7 @@ body {
   font-size: $small-font-size;
 }
 
-.post-short-description {
-  font-weight: $small-font-weight;
-}
+
 
 a.light:hover {
   color: white !important;
@@ -194,4 +192,15 @@ i.googleplus-hover-color:hover {
 
 i.twitter-hover-color:hover {
   color: #0084b4 !important;
+}
+
+
+.post-description {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-weight: $small-font-weight;
+}
+
+.post-image {
+  padding-bottom: 10px;
 }

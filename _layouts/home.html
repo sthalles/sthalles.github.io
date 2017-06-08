@@ -12,15 +12,24 @@ layout: default
   <div>
     {% for post in site.posts %}
     <div class="row post">
-      <div class="col-sm-7">
+      <div class="col-sm-6">
         <h2><a class="dark" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
-        <div> <span class="post-short-description"> {{post.short_description}} </span> </div>
+      </div>
+      
+      <div class="col-sm-6"> 
+        <img class="img-responsive" src="{{post.image_url}}">
+      </div>
+      
+      
+      <div class="col-sm-12 post-description"> 
+        <span> {{post.short_description}} </span> 
       </div>
 
-      <div class="col-sm-5"> <img class="img-responsive" src="{{post.image_url}}"> </div>
-
       {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-      <div class="col-sm-12"> <span class="post-date"> {{ post.date | date: date_format }} </span></div>
+      <div class="col-sm-12"> 
+        <span class="post-date"> {{ post.date | date: date_format }} </span>
+      </div>
+      
     </div>
     {% endfor %}
   </div>
