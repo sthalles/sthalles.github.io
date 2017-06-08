@@ -7,6 +7,11 @@ short_description: "GANs are a kind of generative model in which two differentia
 image_url: "/assets/dcgan/generator-model.png"
 ---
 
+<figure>
+  <img class="img-responsive" src="{{ site.url }}/assets/dcgan/generator-model.png" alt="Genrator network model">
+  <figcaption class="caption center"> Adapted from the DCGAN paper, that is the Generator network described here. Note the not existece of fully connected and pooling layers. </figcaption>
+</figure>
+
 Let's say there is this very cool party going on at your neighborhood, you really wanted to be there but there is a problem, to get into the party you need a special ticket that was long sold out. Considering you are especially eager to go to this party, you decide to do something about it. Since the expectations are very high and people are long waiting for the party to happen, the organization decided to hire a very qualified agency for party security. Their primary goal is to not allow anyone to crash the party. To accomplish that, they placed a lot of security guards at the entrance of the party to meticulously check everyone’s tickets for authenticity. As long as you are not any martial artistic master, the only way to get through the security is by fooling them with a fake ticket.
  
 There is a big problem with this plan though, you never actually saw how the ticket looks like, so even if you design a ticket based solely on your creativity, you know it’s almost impossible to fool the party security at your first trial. In addition, because you do not want to show off your face to the guards until you have a very decent replica of the ticket, you call out your friend Bob to do the dirty job for you. Bob’s mission is very simple, he will try to get into the party with your fake ticket and if he gets denied, he will come back to you at your office with tips regarding how the ticket should look like. Based on these tips, you make a new version of the ticket and hands it to Bob that goes to do the same. This process keeps repeating until you become able to design a perfect replica capable of fooling the security and therefore, allowing you and your friend Bob inside the party.
@@ -37,11 +42,6 @@ GANs are a kind of generative model designed by [Ian Goodfellow](https://arxiv.o
 In summary, the game follows with the generator trying to maximize the probability of making the discriminator mistakes its inputs as real samples while the discriminator is guiding the generator to approximate its samples to the real data distribution. In the perfect equilibrium, the generator would capture the training data distribution which would make the discriminator always unsure whether the generator’s samples are real or not.
 
 Without more ado, let’s dive into the details of the implementation and talk more about GANs as we go. We will discuss the main steps of building a Deep Convolutional Generative Adversarial Network (DCGAN) using Tensorflow based on the original [paper](https://arxiv.org/abs/1511.06434).
-
-<figure>
-  <img class="img-responsive" src="{{ site.url }}/assets/dcgan/generator-model.png" alt="Genrator network model">
-  <figcaption class="caption center"> Adapted from the DCGAN paper, that is the Generator network described here. Note the not existece of fully connected and pooling layers. </figcaption>
-</figure>
 
 The authors of the DCGAN paper describes the combination of some deep learning techniques as key for successfully training GANs. Some of these techniques include, the all convolutional net, which emphasizes the usage of strided convolutions for both, increasing and decreasing the spatial dimensions of the feature map instead of using classical pooling functions, and applying batch normalization i.e. normalizing the input to have zero mean and unit variance in all layers to stabilize learning and to deal with poor weight initialization problems.
 
