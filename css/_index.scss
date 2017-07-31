@@ -35,7 +35,8 @@ body {
 .post {
   border-bottom: 1px solid;
   border-bottom-color: lightgrey;
-  padding: 0 0 15px 0;
+  padding: 8px 0 12px 0;
+
 }
 
 .navbar-blog {
@@ -93,7 +94,7 @@ a:hover, a:active {
   color: $secondary-color-darker800 !important;
   text-decoration: none;
 }
-  
+
 
 .content-container{
   margin: 0px 12px 0px 12px;
@@ -104,7 +105,7 @@ a:hover, a:active {
 // No media query since this is the default in Bootstrap
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px  ) { 
+@media (min-width: 576px  ) {
   .content-container {
     margin: 0 24px 0 24px;
   }
@@ -112,14 +113,14 @@ a:hover, a:active {
 
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
   .content-container {
     margin: 0 72px 0 72px;
   }
 }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 1080px  ) { 
+@media (min-width: 1080px  ) {
   .content-container {
     margin: 0 auto !important;
     width: 768px !important;
