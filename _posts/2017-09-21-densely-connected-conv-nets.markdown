@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Densely Connected Convolutional Networks in Tensorflow"
-date:   2017-12-10 08:00:00 -0300
+date:   2017-12-25 08:00:00 -0300
 categories: deep learning
 short_description: "Supervised learning has been the center of most researching in deep learning in recent years. However, the necessity of creating models capable of learning from fewer or no labeled data is greater year by year."
 image_url: "/assets/semi-supervised/GAN_classifier.png"
@@ -9,59 +9,89 @@ image_url: "/assets/semi-supervised/GAN_classifier.png"
 
 ## Intro
 
-If you like Neural Nets, you certainly have heard about VGGNet, Resnet, Inception, and others. These networks, each one in its time, reached state-of-the-art performance in some of the most famous challanges in Computer Vision. If we look at the short and successfull history of Deep Neural Networks, post the GPGPU and big data revolution, we notice that year by year, these models got more deeper and more powerful. However, as networks were getting more and more dense in the number of paramenters and layers, the problem of how to prevent the gradient from vanishing by the time it reaches the first layers of the network was something to worry about.
+If you like Neural Nets, you certainly have heard about VGGNet, Resnet, Inception, and others. These networks, each one in its time, reached state-of-the-art performance in some of the most famous challenges in Computer Vision. If we look at the short and successful history of Deep Neural Networks, post the GPGPU and big data revolution, we notice that year by year, these models got more deeper and more powerful. However, as networks were getting more and more dense in the number of parameters and layers, the problem of how to prevent the gradient from vanishing by the time it reaches the first layers of the network was something to worry about.
 
-To address this issue, many network architectures emerged such as Resnet and Highway networks. Besides some changes, all of them tried to solve this problem using one single approach - ***create shortcut connections that bypasses a group of operations so that the gradient signal could be propagated without much loss from the end to the begining of the netowork***.
+To address this issue, many network architectures emerged such as Resnet and Highway networks. Besides some changes, all of them tried to solve this problem using a very similar approach - ***create shortcut connections that bypasses a group of operations so that the gradient signal could be propagated without much loss from the end to the beginning of the network***.
 
-In this context, arouse the Densely Connected Convolutional Networks, DenseNets.
+In this context, arouse the [Densely Connected Convolutional Networks](https://arxiv.org/abs/1608.06993), DenseNets.
 
-I have been using this architecute for a while in at least two different kinds of problems, classification and densely prediction problems such as semantic segmentation. During this time, I developed a library to use DenseNets using Tensorflow with its Slim package. I really like this model and in this post, we are going to do an overview of this archtecture, compare it with other very popular ones, and show how one might use the Library for its own pleasure.
+I have been using this architecture for a while in at least two different kinds of problems, classification and densely prediction problems such as semantic segmentation. During this time, I developed a library to use DenseNets using Tensorflow with its [Slim](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/slim) package. I really like this model and in this post, we are going to do an overview of this architecture, compare it with other very popular ones, and show how one might use the Library for its own pleasure.
 
-## Archtecture
+## Architecture
 
-To understand DenseNets, we need to focus on two principal components of its archtecure. The Dense Block, and the Transition Layer. A DenseNet is basically a stack of dense blocks followed by a transition layers. Each block consists of a series of units, each unit packs two convolution operations, each of which is preceeded by Batch Normalization and ReLU activations. In addition, each unit outputs only k feature vectors. This parameter k, also described as the growth rate, controls how much new information the layers allow to pass through.
+To understand DenseNets, we need to focus on two principal components of its architecture. The Dense Block, and the Transition Layer. A DenseNet is basically a stack of dense blocks followed by transition layers. Each block consists of a series of units, each unit packs two convolution operations, each of which is preceded by Batch Normalization and ReLU activations. In addition, each unit outputs only k feature vectors. This parameter k, also described as the growth rate, controls how much new information the layers allow to pass through.
 
-On the other hand, transition layers are very simple components designed to perform downsampling of the features passing the network. Every transition layer consisits of a Batch Normalization layer, followed by a 1x1 convolution, followed by a 2x2 average pooling.
+On the other hand, transition layers are very simple components designed to perform downsampling of the features passing the network. Every transition layer consists of a Batch Normalization layer, followed by a 1x1 convolution, followed by a 2x2 average pooling.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/densenets/densetnet_block_unit_and_transitions_layer.png" alt="DenseNet block unit and transition layer">
-  <figcaption class="caption center"> (Left) DenseNet Block unit operations. (Right) DenseNet Transitions Layer </figcaption>
+  <figcaption class="caption center"> Figure 1: (Left) DenseNet Block unit operations. (Right) DenseNet Transitions Layer </figcaption>
 </figure>
 
-The big difference however, from other regular CNNs, is that each unit within a dense block is connected to every other unit bofore it. In summary, within a given block, the nth unit, receices as input the feature-maps learned by the n-1th, n-2th all the way down to the 1st unit in the pipeline. As you might guess, ***it allows DenseNet models to carry very few parameters because there is a very high level of feature sharring amongst the units.*** We will talk more about number of parameters in a bit.
+The big difference however, from other regular CNNs, is that each unit within a dense block is connected to every other unit before it. In summary, within a given block, the nth unit, receices as input the feature-maps learned by the n-1th, n-2th all the way down to the 1st unit in the pipeline. As a results, ***it allows DenseNets to carry very few parameters because there is a very high level of feature sharring amongst the units.*** We will talk more about number of parameters in a bit.
 
-Different then the ResNet archtecture, DenseNets propose feature reuse among units by concatenation. As a consequence of that archtecure choice, DenseNet models tend to be more compact (in the number of parameters) than ResNets because every feature-map learned by any given DenseNet unit is reused by all of the following units within a block, avoinding the relearning of these same features. To get a better glance at it, let's have a look at the differences between a Resnet unit and a DenseNet unit. Both archtectures employ the so called bottleneck layer, where there is a 1x1 convolution designed to reduce the spatial dimentionallity, followed by a more wider convolution, in this case a 3x3 operation for feature learning.
+Different then ResNets, DenseNets propose feature reuse among units by concatenation. As a consequence of that choice, DenseNet models tend to be more compact (in the number of parameters) than ResNets because every feature-map learned by any given DenseNet unit is reused by all of the following units within a block, avoiding the relearning of these same features.
 
-In its original form, the ResNet bottleneck layer consists of a 1x1 followed by a 3x3 followed by another 1x1 convolution, closing with an addition operation between the original input and the result of the non-linear transformations. This very elegant design gave the ResNet the ILSVRC 2015 classification task challenge chanpionship and since then, it inspired many others similar archtectures that improved upon it.
+To get a better glance at it, let's have a look at the differences between a Resnet unit and a DenseNet unit. Both architectures employ the so called bottleneck layer, where there is a 1x1 convolution designed to reduce the spatial dimensions, followed by a more wider convolution, in this case a 3x3 operation for feature learning.
 
-## Generator
+<figure>
+  <img class="img-responsive center-block" src="{{ site.url }}/assets/densenets/resnet_blottleneck_block.png" alt="ResNet bottleneck layer">
+  <figcaption class="caption center">Figure 2: ResNet bottleneck building block.</figcaption>
+</figure>
 
-The Generator follows a very standard implementation described in the DCGAN paper. This approach consists of reshaping a random vector z to have a 4D shape and then feed it to a sequence of transpose convolutions, batch normalization and leaky RELU operations that increase the spatial dimensions of the input vector while decreases the number of channels. As a result, the network outputs a 32x32x3 RGB tensor shape that is squashed between values of -1 and 1 through the Hyperbolic Tangent Function.
+In its original form, the ResNet bottleneck layer consists of a 1x1 followed by a 3x3 followed by another 1x1 convolution, closing with an addition operation between the original input and the result of the non-linear transformations. This very elegant design gave the ResNet the ILSVRC 2015 classification task challenge championship and since then, it inspired many others similar architectures that improved upon it, as shown in Figure 3 - credits: [Identity Mappings in Deep Residual Networks
+](https://arxiv.org/abs/1603.05027).
+
+<figure>
+  <img class="img-responsive center-block" src="{{ site.url }}/assets/densenets/various_resnet_based_blocks.png" alt="ResNet bottleneck layer">
+  <figcaption class="caption center">Figure 3: Various ResNet like bottleneck layer with different usages of activations.</figcaption>
+</figure>
+
+Regarding parameter efficiency and floating point operations per second (FLOPs), DenseNets not only achieve smaller error rates (on ImageNet) but they also need less parameters and less float point operations than ResNets.
+
+<figure>
+  <img class="img-responsive center-block" src="{{ site.url }}/assets/densenets/denset_resnet_parameter_accuracy_comparison.png" alt="ResNet bottleneck layer">
+  <figcaption class="caption center">Figure 4: DenseNets and ResNets top-1 error rates on the ImageNet validation dataset as a function of learned parameters (left) and FLOPs during test-time (right).</figcaption>
+</figure>
+
+Another trick that enhances model compactness is the feature-map filtering operation carry out on the DenseNets' transition layers. To reduce the number of feature vectors that go into each dense block, DenseNets implement a filtering mechanism where in each transition layer, a factor *&#952;*, between 0 and 1, controls how much of the current features are allowed to pass through to the following block. In this context, DenseNets that implement the bottleneck layer described above and a value of *&#952;* < 1 are called DenseNets-BC and are the most parameter efficient variation.
+
+
+## Library
+
+The DenseNet Library is heavily based on the resnet_v2 library available on the Tensorflow Slim packages. That follows a basic usage for classification task with 1000 classes.
 
 {% highlight python %}
-def generator(z, output_dim, reuse=False, alpha=0.2, training=True, size_mult=128):
-    with tf.variable_scope('generator', reuse=reuse):
-        # First fully connected layer
-        x1 = tf.layers.dense(z, 4 * 4 * size_mult * 4)
-        # Reshape it to start the convolutional stack
-        x1 = tf.reshape(x1, (-1, 4, 4, size_mult * 4))
-        x1 = tf.layers.batch_normalization(x1, training=training)
-        x1 = tf.maximum(alpha * x1, x1)
+import tensorflow as tf
+import numpy as np
+import densenet
+from densenet_utils import densenet_arg_scope
+slim = tf.contrib.slim
 
-        x2 = tf.layers.conv2d_transpose(x1, size_mult * 2, 5, strides=2, padding='same')
-        x2 = tf.layers.batch_normalization(x2, training=training)
-        x2 = tf.maximum(alpha * x2, x2)
+fake_input = np.zeros((1,224,224,3), dtype=np.float32)
 
-        x3 = tf.layers.conv2d_transpose(x2, size_mult, 5, strides=2, padding='same')
-        x3 = tf.layers.batch_normalization(x3, training=training)
-        x3 = tf.maximum(alpha * x3, x3)
+with slim.arg_scope(densenet_arg_scope()):
+    net, end_points = densenet.densenet_121(inputs=fake_input,
+                                            num_classes=1000,
+                                            theta=0.5,
+                                            is_training=True,
+                                            scope='DenseNet_121')
+{% endhighlight %}
 
-        # Output layer
-        logits = tf.layers.conv2d_transpose(x3, output_dim, 5, strides=2, padding='same')
 
-        out = tf.tanh(logits)
+By default, DenseNets have nominal stride equal to 32, that is, the ratio of the input image resolution to the final output resolution is 32. However, for dense prediction tasks such as semantic segmentation, one might benefit setting this stride to something smaller such as 16 or even 8. Now, follows the example where we use output_stride=16, deactivate global average pooling and note the initial_output_stride parameter set to 2.
 
-        return out
+{% highlight python %}
+with slim.arg_scope(densenet_arg_scope()):
+
+    net, end_points = densenet.densenet_121(fake_input,
+                                   num_classes=21,
+                                   theta=0.5,
+                                   is_training=True,
+                                   global_pool=False,
+                                   output_stride=16,
+                                   initial_output_stride=2,
+                                   spatial_squeeze=False)
 {% endhighlight %}
 
 ## Discriminator
