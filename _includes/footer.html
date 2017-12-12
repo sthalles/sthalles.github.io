@@ -5,7 +5,13 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <span> 
+        <span>
+          {% if site.copyright.to_i %}
+              {{site.copyright | escape}}
+          {% endif %}
+          {% if site.author %}
+              {{ site.author | escape }}
+          {% endif %}
         </span>
       </div>
       
