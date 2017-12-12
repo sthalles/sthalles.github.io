@@ -10,7 +10,7 @@ image_url: "/assets/dcgan/GANs.png"
 The notebook for this post can be found [here](https://github.com/sthalles/blog-resources/blob/master/dcgan/DCGAN.ipynb).
 
 Let's say there is this very cool party going on at your neighborhood, you really wanted to be there but there is a problem, to get into the party you need a special ticket that was long sold out. Considering you are especially eager to go to this party, you decide to do something about it. Since the expectations are very high and people are long waiting for the party to happen, the organization decided to hire a very qualified agency for party security. Their primary goal is to not allow anyone to crash the party. To accomplish that, they placed a lot of security guards at the entrance of the party to meticulously check everyone’s tickets for authenticity. As long as you are not any martial artistic master, the only way to get through the security is by fooling them with a fake ticket.
- 
+
 There is a big problem with this plan though, you never actually saw how the ticket looks like, so even if you design a ticket based solely on your creativity, you know it’s almost impossible to fool the party security at your first trial. In addition, because you do not want to show off your face to the guards until you have a very decent replica of the ticket, you call out your friend Bob to do the dirty job for you. Bob’s mission is very simple, he will try to get into the party with your fake ticket and if he gets denied, he will come back to you at your office with tips regarding how the ticket should look like. Based on these tips, you make a new version of the ticket and hands it to Bob that goes to do the same. This process keeps repeating until you become able to design a perfect replica capable of fooling the security and therefore, allowing you and your friend Bob inside the party.
 
 
@@ -20,7 +20,7 @@ There is a big problem with this plan though, you never actually saw how the tic
 </figure>
 
 Putting aside the “small holes” on this anecdote, this is how Generative Adversarial Networks (GANs) kind of work. Most of the applications of GANs nowadays are in the domain of computer vision. GANs have been used to address a lot of problems such as training classifiers in a semi-supervised learning manner and to get high resolution images from low resolution ones. This article is intended to provide a quick introduction to GANs as well as to offer a hands on in the problem of generating images.
- 
+
 GANs are a kind of generative model designed by [Ian Goodfellow](https://arxiv.org/abs/1406.2661) in which two differentiable functions (represented by neural networks) are locked in a game. The two players, the generator and the discriminator have different roles in this framework. The generator tries to produce data that come from some probability distribution – that would be you trying to reproduce the party’s tickets. The discriminator, on the other hand, gets to decide if its input comes from the generator or from the true training set - that would be the party security comparing your fake ticket with the true ticket and looking for flaws in your design.
 
 
@@ -64,22 +64,22 @@ def generator(z, output_dim, reuse=False, alpha=0.2, training=True):
     """
     with tf.variable_scope('generator', reuse=reuse):
         fc1 = dense(z, 4*4*512)
-        
+
         # Reshape it to start the convolutional stack
         fc1 = tf.reshape(fc1, (-1, 4, 4, 512))
         fc1 = batch_norm(fc1, training=training)
         fc1 = tf.nn.relu(fc1)
-        
+
         t_conv1 = transpose_conv2d(fc1, 256)
         t_conv1 = batch_norm(t_conv1, training=training)
         t_conv1 = tf.nn.relu(t_conv1)
-        
+
         t_conv2 = transpose_conv2d(t_conv1, 128)
         t_conv2 = batch_norm(t_conv2, training=training)
         t_conv2 = tf.nn.relu(t_conv2)
-        
+
         logits = transpose_conv2d(t_conv2, output_dim)
-        
+
         out = tf.tanh(logits)
         return out
 {% endhighlight %}
@@ -102,11 +102,11 @@ def discriminator(x, reuse=False, alpha=0.2, training=True):
         # Input layer is 32x32x?
         conv1 = conv2d(x, 64)
         conv1 = lrelu(conv1, alpha)
-        
+
         conv2 = conv2d(conv1, 128)
         conv2 = batch_norm(conv2, training=training)
         conv2 = lrelu(conv2, alpha)
-        
+
         conv3 = conv2d(conv2, 256)
         conv3 = batch_norm(conv3, training=training)
         conv3 = lrelu(conv3, alpha)
@@ -120,7 +120,7 @@ def discriminator(x, reuse=False, alpha=0.2, training=True):
 {% endhighlight %}
 
 Note that in this framework, the discriminator acts as a regular binary classifier. Half of the time it receives images from the training set and the other half from the generator. Back to our adventure, to successfully reproduce the party’s ticket, the only source of information you had was the feedback from our friend Bob. Put differently, the quality of the information Bob provides to you at each trial was essential to get the job done. ***Equivalently, every time the discriminator notices a difference between the real and fake images, the gradients that flow from the discriminator to the generator allows for the generator to adjust its parameters to approximate its sample outputs to the ones of the training set***. This is how important the discriminator is. In fact, ***the generator will be as good as producing data as the discriminator is at telling them apart***.
- 
+
 ### Losses
 
 Now, let’s describe what I believe is the trickiest part of this architecture, the losses. First, we already know that the discriminator receives images from both, the training set and from the generator. We want the discriminator to be able to distinguish between real and fake images. Every time we run a mini-batch through the discriminator, we get logits, i.e. the unscaled values from the model. However, if we think about it, we can divide the mini-batches that the discriminator receives in two types, one composed only with real images that come from the training set and another one with only fake images a.k.a. the ones created by the generator.
@@ -132,33 +132,33 @@ def model_loss(input_real, input_z, output_dim, alpha=0.2, smooth=0.1):
     :param input_real: Images from the real dataset
     :param input_z: random vector z
     :param out_channel_dim: The number of channels in the output image
-    :param smooth: label smothing scalar 
+    :param smooth: label smothing scalar
     :return: A tuple of (discriminator loss, generator loss)
     """
     g_model = generator(input_z, output_dim, alpha=alpha)
     d_model_real, d_logits_real = discriminator(input_real, alpha=alpha)
-        
+
     d_model_fake, d_logits_fake = discriminator(g_model, reuse=True, alpha=alpha)
-    
+
     # for the real images, we want them to be classified as positives,  
-    # so we want their labels to be all ones. 
-    # notice here we use label smoothing for helping the discriminator to generalize better. 
+    # so we want their labels to be all ones.
+    # notice here we use label smoothing for helping the discriminator to generalize better.
     # Label smoothing works by avoiding the classifier to make extreme predictions when extrapolating.
     d_loss_real = tf.reduce_mean(
         tf.nn.sigmoid_cross_entropy_with_logits(logits=d_logits_real, labels=tf.ones_like(d_logits_real) * (1 - smooth)))
-    
+
     # for the fake images produced by the generator, we want the discriminator to clissify them as false images,
     # so we set their labels to be all zeros.
     d_loss_fake = tf.reduce_mean(
         tf.nn.sigmoid_cross_entropy_with_logits(logits=d_logits_fake, labels=tf.zeros_like(d_model_fake)))
-    
+
     # since the generator wants the discriminator to output 1s for its images, it uses the discriminator logits for the
     # fake images and assign labels of 1s to them.
     g_loss = tf.reduce_mean(
         tf.nn.sigmoid_cross_entropy_with_logits(logits=d_logits_fake, labels=tf.ones_like(d_model_fake)))
-    
+
     d_loss = d_loss_real + d_loss_fake
-    
+
     return d_loss, g_loss
 {% endhighlight %}
 
@@ -178,10 +178,10 @@ In the beginning of training, neither the generator knows how to properly draw t
 
 ### Concluding
 
-GANs are, with no doubt, one of the hottest subjects in machine learning right now. Mainly because it has been treated as key to unlock some ***unsupervised learning*** methods that would make these models even more powerful. 
- 
+GANs are, with no doubt, one of the hottest subjects in machine learning right now. Mainly because it has been treated as key to unlock some ***unsupervised learning*** methods that would make these models even more powerful.
+
 There has been a lot of advancements in training GANs to achieve state-of-the-art results, some of them can be found at [Improved Techniques for Training GANs](https://arxiv.org/abs/1606.03498), where the authors describe some advanced techniques for both image generation and unsupervised learning training with GANs.
- 
+
 In addition, there are two very good blog posts that really inspired me when learning to understand how GANs work: [Generative Models](https://blog.openai.com/generative-models/#gan) and [Generative Adversarial Networks Explained with a Classic Spongebob Squarepants Episode](https://medium.com/@awjuliani/generative-adversarial-networks-explained-with-a-classic-spongebob-squarepants-episode-54deab2fce39).
- 
+
 Enjoy!
