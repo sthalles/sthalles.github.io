@@ -111,9 +111,7 @@ In the original DenseNet, right before the first dense block, a strided 2 convol
 
 When setting  ***initial_output_stride*** to 2, the network will only convolve the input image to ***2 * growth_rate*** number of channels and skip the max pooling operation.
 
-The Library offers all 4 architecture implementations used to train on ImageNet. For ***densenet_121(...), densenet_169(...), densenet_201(...)*** the **growth_rate*** is set to 32 while for densenet_161(...), the value **growth_rate*** is set to 48 as described in the paper.
-
-
+The Library offers all 4 architecture implementations used to train on ImageNet. For ***densenet_121(...), densenet_169(...), densenet_201(...)*** the ***growth_rate*** is set to 32 while for densenet_161(...), the value ***growth_rate*** is set to 48 as described in the paper.
 
 {% highlight python %}
 with slim.arg_scope(densenet_arg_scope()):
@@ -128,7 +126,7 @@ with slim.arg_scope(densenet_arg_scope()):
 However, if one feels like playing with different setups, there is the ***densenet.densenet_X(...)*** constructor, where the ***number of dense blocks***, the number of ***units within each block*** as well as the ***growth_rate*** factor can be manually configured.
 
 {% highlight python %}
-# Custom definition of the DenseNet_121 architecture
+# Custom definition for DenseNet_121
 def densenet_X(inputs,
                 num_classes=None,
                 theta=0.5,
@@ -146,4 +144,4 @@ def densenet_X(inputs,
 
 ## Concluding
 
-As machine learning grows, attempts to solve already establish problems using less labeled data are key for breaking the unsupervised learning obstacles machine learning is facing right now. In this scenario, GANs pose a real alternative for learning complicated tasks with less labeled samples. However, the distance between semi-supervised and fully supervised learning solutions is still far from being equal, but we certainly can expect this gap to become shorter as new approaches come in to play.  
+DenseNets offer very scalable models that achieve very good accuracy and are easy to train. The key idea consists sharing feature maps within a block through direct connections between layers. Moreover, it demands fewer parameters than a number of other models like ResNets, Inception Networks, and others while offering equally or improved accuracy on various classification datasets. The DenseNet library described here implement all 4 architectures used to train on ImageNet plus a custom constructor in which any network variation can be experimented. Feel free to checkout the code on Github and make pull requests with any suggestion.
