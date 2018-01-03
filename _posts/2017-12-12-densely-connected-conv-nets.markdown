@@ -46,7 +46,7 @@ This very elegant design gave the ResNet the ILSVRC 2015 classification task cha
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/densenets/various_resnet_based_blocks.png" alt="ResNet bottleneck layer">
-  <figcaption class="caption center">Figure 3: Various ResNet like bottleneck layer with different usages of activations.</figcaption>
+  <figcaption class="caption center">Figure 3: Various ResNet block architectures with different usages of activations.</figcaption>
 </figure>
 
 Regarding parameter efficiency and floating point operations per second (FLOPs), DenseNets not only achieve smaller error rates (on ImageNet) but they also need less parameters and less float point operations than ResNets.
