@@ -52,7 +52,7 @@ In summary, the game follows with:
 
 In the perfect equilibrium, the generator would capture the general training data distribution. As a result, the discriminator is always unsure of whether its inputs are real or not.
 
-Without more ado, let’s dive into the details of the implementation and talk more about GANs as we go. We present an implementation of a Deep Convolutional Generative Adversarial Network (DCGAN). Our implementation uses Tensorflow and follows the best practices described at [paper](https://arxiv.org/abs/1511.06434).
+Without more ado, let’s dive into the details of the implementation and talk more about GANs as we go. We present an implementation of a Deep Convolutional Generative Adversarial Network (DCGAN). Our implementation uses Tensorflow and follows the best practices described at the [DCGAN paper](https://arxiv.org/abs/1511.06434).
 
 <figure>
   <img class="img-responsive" src="{{ site.url }}/assets/dcgan/generator-model.png" alt="Genrator network model">
