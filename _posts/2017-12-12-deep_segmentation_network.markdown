@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Deep Semantic Image Segmentation Network"
-date:   2017-01-01 08:00:00 -0300
+date:   2019-01-01 08:00:00 -0300
 categories: deep learning
 short_description: "DenseNets offer very scalable models that achieve very good accuracy and are easy to train. The key idea consists sharing feature maps within a block through direct connections between layers."
 image_url: "/assets/deep_segmentation_network/semantic_segmentation.jpg"
