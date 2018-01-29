@@ -248,7 +248,7 @@ Finally, we crop patches of size *513x513* for both training and testing.
 
 {% highlight python %}
 
-def densenet(inputs, args, is_training, reuse):
+def deeplab_v3(inputs, args, is_training, reuse):
 
     # mean subtraction normalization
     inputs = inputs - [_R_MEAN, _G_MEAN, _B_MEAN]
