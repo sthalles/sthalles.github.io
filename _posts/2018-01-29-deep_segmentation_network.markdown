@@ -306,7 +306,7 @@ The augmented training data is composed of 7,922 images. 5,623 from the training
 
 Note that different from the original paper, this implementation is not pre-trained in the COCO dataset. Also, some of the techniques described in the paper for training and evaluation were not queried out.
 
-# Results
+## Results
 
 The model was able to achieve decent results on the PASCAL VOC validation set.
 
