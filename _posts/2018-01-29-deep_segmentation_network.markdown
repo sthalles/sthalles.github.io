@@ -226,7 +226,7 @@ After ASPP, we feed the result to another *1x1* convolution - to produce the fin
 
 ## Implementation Details
 
-This version of the Deeplab_v3 segmentation network uses the Tensorflow Slim package. I took the ResNet implementation from the [Tensorflow-Slim Github](https://github.com/tensorflow/models/tree/master/research/slim/nets). Following the best results reported in [Deeplab_v3](https://arxiv.org/pdf/1704.06857), this implementation employs the following network configuration:
+Using the ResNet-50 as feature extractor, this implementation of Deeplab_v3 employs the following network configuration:
 
 -          *output stride = 16*
 -          *Fixed multi-grid atrous convolution rates of (1,2,4) to the new Atrous Residual block (block 4).*
