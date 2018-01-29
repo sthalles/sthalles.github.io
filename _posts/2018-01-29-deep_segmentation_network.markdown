@@ -144,7 +144,7 @@ In theory, it works like that. First, it expands (dilates) the convolution filte
   <figcaption class="caption center">Atrous convolutions with various rates.</figcaption>
 </figure>
 
-As a consequence, a convolution with a dilated 2, 3x3 filter would make it able to cover an area equivalent to a *5x5*. Yet, because it acts like a sparse filter, only the original *3x3* cells will do computation and produce results. I said "act" because most frameworks don't implement atrous convolutions using sparse filters - because of memory concerns.
+As a consequence, a convolution with a dilated 2, *3x3* filter would make it able to cover an area equivalent to a *5x5*. Yet, because it acts like a sparse filter, only the original *3x3* cells will do computation and produce results. I said "act" because most frameworks don't implement atrous convolutions using sparse filters - because of memory concerns.
 
 In a similar way, setting the atrous factor to 3 allows a regular *3x3* convolution to get signals from a *7x7* corresponding area.
 
