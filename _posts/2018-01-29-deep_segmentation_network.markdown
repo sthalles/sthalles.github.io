@@ -315,7 +315,7 @@ The model was able to achieve decent results on the PASCAL VOC validation set.
 - Pixel accuracy: ~91%
 - Mean Accuracy: ~82%
 - Mean Intersection over Union (mIoU): ~74%
-- Frequency weighed Intersection over Union: ~86.
+- Frequency weighed Intersection over Union: ~86%.
 
 Bellow, you can check out some of the results in a variety of images from the PASCAL VOC validation set.
 
