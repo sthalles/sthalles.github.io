@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Deeplab Image Semantic Image Segmentation Network"
+title:  "Deeplab Image Semantic Segmentation Network"
 date:   2018-01-29 08:00:00 -0300
 categories: deep learning
 short_description: "Deep Convolution Neural Networks (DCNNs) have achieved remarkable success in various Computer Vision applications. Like others, the task of semantic segmentation is not an exception to this trend."
