@@ -36,14 +36,14 @@ Keep in mind that semantic segmentation doesn't differentiate between object ins
 
 Yet, regular DCNNs such as the AlexNet and VGG aren't suitable for dense prediction tasks. First, these models contain many layers designed to reduce the spatial dimensions of the input features. These layers end up producing highly decimated feature vectors that lack sharp details. Second, fully-connected layers have fixed sizes and loose spatial information during computation.
 
-As an example, instead of having pooling and fully-connected layers, imagine passing an image through a series of convolutions. We can set each convolution to have *stride of 1* and "SAME" padding. ***Doing this, we get the benefit of having the output vector with the same dimensions as the input***. In other words, each convolution preserves the spatial dimensions of its input. We could stack a bunch of these convolutions and have our segmentation model.
+As an example, instead of having pooling and fully-connected layers, imagine passing an image through a series of convolutions. We can set each convolution to have *stride of 1* and "SAME" padding. ***Doing this, each convolution preserves the spatial dimensions of its input***. We can stack a bunch of these convolutions and have a segmentation model.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/fully_conv.png" alt="ResNet bottleneck layer">
   <figcaption class="caption center"> Fully-Convolution neural network for dense prediction task. Note the non-existence of pooling and fully-connected layers. </figcaption>
 </figure>
 
-This model could output a probability tensor with shape *[W,H,C]*, where W and H represents the Width and Height. And C the number of class labels. With this tensor, we can apply the argmax function (on the second axis) and get a tensor shape like *[W,H,1]*. After, we compute the cross entropy loss between each pixel of the ground-truth images and our predictions. In the end, we average that value and train the network using back prop.
+This model could output a probability tensor with shape *[W,H,C]*, where W and H represents the Width and Height. And C the number of class labels. Applying the argmax function (on the second axis) gives us a tensor shape of *[W,H,1]*. After, we compute the cross entropy loss between each pixel of the ground-truth images and our predictions. In the end, we average that value and train the network using back prop.
 
 There is one problem with this approach though. As we mentioned, using convolutions with stride 1 and "SAME" padding preserves the input dimensions. However, doing that would make the model super expensive in both ways. Memory consumption and computation complexity.
 
@@ -58,7 +58,7 @@ There are two common ways to do downsampling in neural nets. By using *convoluti
 
 Also, note that the first part of this architecture looks a lot like usual classification DCNNs. With one exception, they do not put in place *fully-connected* layers.
 
-After the first part, we have a feature vector with shape [w,h,d] where w, h and d are the width, height and depth of the feature tensor. Note that the spatial dimensions of this compressed vector is smaller than the original input.
+After the first part, we have a feature vector with shape [w,h,d] where w, h and d are the width, height and depth of the feature tensor. Note that the spatial dimensions of this compressed vector are smaller (yet denser) than the original input.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/fully_conv_network.png" alt="ResNet bottleneck layer">
@@ -69,7 +69,7 @@ After the first part, we have a feature vector with shape [w,h,d] where w, h and
 
 At this point, regular classification DCNNs would output a dense (non-spatial) vector containing probabilities for each class label. Instead, we feed this compressed feature vector to a series of upsampling layers. These layers work on reconstructing the output of the first part of the network. ***The goal is to increase the spatial resolution so the output vector has the same dimensions as the input***.
 
-Usually, upsampling layers are based on *strided transpose convolutions*. ***These functions go from deep and narrow layers to wider and shallower ones***. In short, We use transpose convolutions to increase feature vector to a desired spatial dimension.
+Usually, upsampling layers are based on *strided transpose convolutions*. ***These functions go from deep and narrow layers to wider and shallower ones***. Log story short, we use transpose convolutions to increase feature vectors dimension to a desired value.
 
 In most papers, these two components of a segmentation network are called: encoder and decoder. In short, the first, "encodes" its information into a compressed vector used to represent its input. The second (the decoder) works on reconstructing this signal to the desired outcome.
 
@@ -85,7 +85,7 @@ Different from most encoder-decoder designs, Deeplab offers a different approach
 
 *Image credits: [Rethinking Atrous Convolution for Semantic Image Segmentation](https://arxiv.org/abs/1706.05587).*
 
-Deeplab uses an ImageNet-pretrained ResNet as feature extractor for semantic segmentation. However, it proposes a new Residual block for multi-scale feature learning. Instead of regular convolutions, the last ResNet block uses atrous convolutions. Also, each convolution (within this new block) uses different dilation rates to capture multi-scale context.
+Deeplab uses an ImageNet-pretrained ResNet as its main feature extractor network. However, it proposes a new Residual block for multi-scale feature learning. Instead of regular convolutions, the last ResNet block uses atrous convolutions. Also, each convolution (within this new block) uses different dilation rates to capture multi-scale context.
 
 Additionally, on top of this new block, it uses Atrous Spatial Pyramid Pooling (ASPP). ASPP uses dilated convolutions with different rates as an attempt of classifying regions of an arbitrary scale.
 
@@ -118,7 +118,7 @@ Non-bottleneck units also show gain in accuracy as we increase model capacity. Y
 
 In practice, *bottleneck* units are more suitable for training deeper models because of less training time and computational resources need.
 
-For our implementation though, we use the ***full pre-activatiom Residual Unit***. The only difference, from the standard bottleneck unit, lies in the order in which BN and ReLU activations are placed. For the full pre-activatiom, BN and ReLU (in this order) occur before convolutions.
+For our implementation, we use the ***full pre-activatiom Residual Unit***. The only difference, from the standard bottleneck unit, lies in the order in which BN and ReLU activations are placed. For the full pre-activatiom, BN and ReLU (in this order) occur before convolutions.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/various_resnet_based_blocks.png" alt="ResNet bottleneck layer">
@@ -137,14 +137,14 @@ Atrous (or dilated) convolutions are regular convolutions with a factor that all
 
 Consider a *3x3* convolution filter for instance. When the dilation rate is equal to 1, it behaves like a standard convolution. But, if we set the dilation factor to 2, it has the effect of enlarging the convolution kernel.
 
-In theory, it works like that. First, it expands (dilates) the convolution filter according to the dilation rate. Second, it fills the empty spaces with zeros - creating an sparse like filter. Finally, it performs regular convolution with this dilated filter.
+In theory, it works like that. First, it expands (dilates) the convolution filter according to the dilation rate. Second, it fills the empty spaces with zeros - creating an sparse like filter. Finally, it performs regular convolution using the dilated filter.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/atrous_conv.png" alt="ResNet bottleneck layer">
   <figcaption class="caption center">Atrous convolutions with various rates.</figcaption>
 </figure>
 
-As a consequence, applying a dilation rate = 2 over a regular *3x3* filter, has the effect of ***expanding*** the convolution filter. Now, this new filter covers an area equivalent to a *5x5*. Yet, because it acts like a sparse filter, only the original *3x3* cells will do computation and produce results. I said "act" because most frameworks don't implement atrous convolutions using sparse filters - because of memory concerns.
+As a consequence, a convolution with a dilated 2, 3x3 filter would make it able to cover an area equivalent to a 5x5. Yet, because it acts like a sparse filter, only the original *3x3* cells will do computation and produce results. I said "act" because most frameworks don't implement atrous convolutions using sparse filters - because of memory concerns.
 
 In a similar way, setting the atrous factor to 3 allows a regular *3x3* convolution to get signals from a 7x7 corresponding area.
 
@@ -165,9 +165,9 @@ Put in another way, the efficiency of atrous convolutions depends on a good choi
 
 For an output stride of 16, an image size of *224x224x3* outputs a feature vector with 16 times smaller dimensions. That is *14x14*.
 
-Besides, Deeplab also debates the effects of different output strides on segmentation models. ***It argues that excessive signal decimation is harmful for dense prediction tasks***. In summary, models with smaller output stride - less signal decimation - tends to output finer segmentation results. Yet, training models with smaller output stride demands more training time.
+Besides, Deeplab also debates the effects of different output strides on segmentation models. ***It argues that excessive signal decimation is harmful for dense prediction tasks***. In short, models with smaller output stride - less signal decimation - tends to output finer segmentation results. Yet, training models with smaller output stride demands more training time.
 
-Deeplab reports experiments with two configurations of output strides, 8 and 16. As expected, output stride = 8 was able to result slightly better results. Here we choose output stride = 16 for practical reasons. In other words, for input images of size *513x513*, the new Atrous Block operates on feature maps of size *32x32*.
+Deeplab reports experiments with two configurations of output strides, 8 and 16. As expected, output stride = 8 was able to result slightly better results. Here we choose output stride = 16 for practical reasons.
 
 Also, because the atrous block does't implement downsampling, ASPP also runs on the same feature response size. As a result, it allows learning features from multi-scale context using relative large dilation rates.
 
@@ -183,11 +183,9 @@ For ASPP, the idea is to provide the model with multi-scale information. To do t
 
 This version of ASPP contains 4 parallel operations. These are a *1x1* convolution and three *3x3* convolutions with *dilation rates =(6,12,18)*. As we mentioned, at this point, the feature maps' nominal stride is equal to 16.
 
-Based on the original implementation, we use crop sizes of *513x513* for both: training and testing. Thus, using an output stride 16 means that ASPP receives feature vectors with size *32x32*.
+Based on the original implementation, we use crop sizes of *513x513* for both: training and testing. Thus, using an output stride 16 means that ASPP receives feature vectors of size *32x32*.
 
-The paper also describes a technique for improving older versions of ASPP. The idea is to add more global context information using image-level features.
-
-First, it applies GAP to the output features from the last atrous block. Second, the resulting features are fed to a *1x1* convolution with *256 filters*. Finally, the result is bilinearly upsampled to the correct dimensions.
+Also, to add more global context information, ASPP incorporates image-level features. First, it applies GAP to the output features from the last atrous block. Second, the resulting features are fed to a *1x1* convolution with *256 filters*. Finally, the result is bilinearly upsampled to the correct dimensions.
 
 {% highlight python %}
 @slim.add_arg_scope
@@ -242,7 +240,7 @@ Finally, each of the three parallel *3x3* convolutions in ASPP gets a different 
 
 Before computing the *cross-entropy error*, we resize the logits to the input's size. As argued in the paper, it's better to resize the logits than the ground-truth labels to keep resolution details.
 
-Based on the original training procedures, we scale each image using a random factor from 0.5 to 2. Also, we apply random left-right flipping to the scaled image.
+Based on the original training procedures, we scale each image using a random factor from 0.5 to 2. Also, we apply random left-right flipping to the scaled images.
 
 Finally, we crop patches of size *513x513* for both training and testing.
 
