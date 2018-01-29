@@ -16,7 +16,7 @@ This piece provides an introduction to Semantic Segmentation with a hands-on Ten
 
 Regular image classification DCNNs have similar structure. These models take images as input and output a single value representing a category label.
 
-Usually, these models have four main operations. *Convolutions*, *activation function*, *pooling*, and *fully-connected layers*. After passing an image through a series of these operations, the network outputs a feature vector containing the probabilities for each class label. Note that in this setup, we categorize an image as whole. In other words, we assign a single label to an entire image.
+Usually, these models have four main operations. *Convolutions*, *activation function*, *pooling*, and *fully-connected layers*. Passing an image through a series of these operations, outputs a feature vector containing the probabilities for each class label. Note that in this setup, we categorize an image as whole. That is, we assign a single label to an entire image.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/cnns.jpg" alt="ResNet bottleneck layer">
@@ -144,9 +144,9 @@ In theory, it works like that. First, it expands (dilates) the convolution filte
   <figcaption class="caption center">Atrous convolutions with various rates.</figcaption>
 </figure>
 
-As a consequence, a convolution with a dilated 2, 3x3 filter would make it able to cover an area equivalent to a 5x5. Yet, because it acts like a sparse filter, only the original *3x3* cells will do computation and produce results. I said "act" because most frameworks don't implement atrous convolutions using sparse filters - because of memory concerns.
+As a consequence, a convolution with a dilated 2, 3x3 filter would make it able to cover an area equivalent to a *5x5*. Yet, because it acts like a sparse filter, only the original *3x3* cells will do computation and produce results. I said "act" because most frameworks don't implement atrous convolutions using sparse filters - because of memory concerns.
 
-In a similar way, setting the atrous factor to 3 allows a regular *3x3* convolution to get signals from a 7x7 corresponding area.
+In a similar way, setting the atrous factor to 3 allows a regular *3x3* convolution to get signals from a *7x7* corresponding area.
 
 This effect allows us to control the resolution at which we compute feature responses. Also, atrous convolution adds larger context without increasing the number of parameters or the amount of computations.
 
@@ -175,7 +175,7 @@ The new Atrous Residual Block contains three residual units. In total, the 3 uni
 
 In practice:
 
-For the new block4, when output stride = 16 and ***Multi Grid = (1, 2, 4)***, the three convolutions will have ***rates = 2 · (1, 2, 4) = (2, 4, 8)*** respectively.
+For the new block4, when output stride = 16 and ***Multi Grid = (1, 2, 4)***, the three convolutions have ***rates = 2 · (1, 2, 4) = (2, 4, 8)*** respectively.
 
 ### Atrous Spatial Pyramid Pooling
 
@@ -185,7 +185,7 @@ This version of ASPP contains 4 parallel operations. These are a *1x1* convoluti
 
 Based on the original implementation, we use crop sizes of *513x513* for both: training and testing. Thus, using an output stride 16 means that ASPP receives feature vectors of size *32x32*.
 
-Also, to add more global context information, ASPP incorporates image-level features. First, it applies GAP to the output features from the last atrous block. Second, the resulting features are fed to a *1x1* convolution with *256 filters*. Finally, the result is bilinearly upsampled to the correct dimensions.
+Also, to add more global context information, ASPP incorporates image-level features. First, it applies GAP to the output features from the last atrous block. Second, the resulting features are fed to a *1x1* convolution with 256 filters. Finally, the result is bilinearly upsampled to the correct dimensions.
 
 {% highlight python %}
 @slim.add_arg_scope
@@ -226,7 +226,7 @@ After ASPP, we feed the result to another *1x1* convolution - to produce the fin
 
 ## Implementation Details
 
-This version of the Deeplab_v3 segmentation network uses the Tensorflow Slim package. The ResNet-50 implementation is available at [Tensorflow-Slim Github](https://github.com/tensorflow/models/tree/master/research/slim/nets). Following the best results reported in [Deeplab_v3](https://arxiv.org/pdf/1704.06857), this implementation employs the following network configuration:
+This version of the Deeplab_v3 segmentation network uses the Tensorflow Slim package. The baseline ResNet-50 implementation is available at [Tensorflow-Slim Github](https://github.com/tensorflow/models/tree/master/research/slim/nets). Following the best results reported in [Deeplab_v3](https://arxiv.org/pdf/1704.06857), this implementation employs the following network configuration:
 
 -          *output stride = 16*
 -          *Fixed multi-grid atrous convolution rates of (1,2,4) to the new Atrous Residual block (block 4).*
@@ -302,7 +302,7 @@ with tf.variable_scope('unit_%d' % (i + 1), values=[net]):
 
 To train the network, we decided to use the augmented Pascal VOC dataset provided by [Semantic contours from inverse detectors](http://ieeexplore.ieee.org/document/6126343/).
 
-The augmented training data is composed of 7,922 images. 5,623 from the training set and 2,299 from the validation set. To test the model using the original VOC 2012 val dataset, I removed 558 images from the training set. These 558 samples were also present on the official VOC validation set. Finally, 10% of the 7,922 images (~792 samples) are held for validation, leaving the rest for training.
+The training data is composed of 7,922 images. 5,623 from the training set and 2,299 from the validation set. To test the model using the original VOC 2012 val dataset, I removed 558 images from the training set. These 558 samples were also present on the official VOC validation set. Finally, 10% of the 7,922 images (~792 samples) are held for validation, leaving the rest for training.
 
 Note that different from the original paper, this implementation is not pre-trained in the COCO dataset. Also, some of the techniques described in the paper for training and evaluation were not queried out.
 
