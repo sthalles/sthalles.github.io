@@ -69,7 +69,7 @@ After the first part, we have a feature vector with shape [w,h,d] where w, h and
 
 At this point, regular classification DCNNs would output a dense (non-spatial) vector containing probabilities for each class label. Instead, we feed this compressed feature vector to a series of upsampling layers. These layers work on reconstructing the output of the first part of the network. ***The goal is to increase the spatial resolution so the output vector has the same dimensions as the input***.
 
-Usually, upsampling layers are based on *strided transpose convolutions*. ***These functions go from deep and narrow layers to wider and shallower ones***. Log story short, we use transpose convolutions to increase feature vectors dimension to a desired value.
+Usually, upsampling layers are based on *strided transpose convolutions*. ***These functions go from deep and narrow layers to wider and shallower ones***. Here, we use transpose convolutions to increase feature vectors dimension to a desired value.
 
 In most papers, these two components of a segmentation network are called: encoder and decoder. In short, the first, "encodes" its information into a compressed vector used to represent its input. The second (the decoder) works on reconstructing this signal to the desired outcome.
 
