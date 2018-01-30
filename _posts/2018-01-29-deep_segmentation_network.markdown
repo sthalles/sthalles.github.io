@@ -304,7 +304,7 @@ with tf.variable_scope('unit_%d' % (i + 1), values=[net]):
 
 To train the network, we decided to use the augmented Pascal VOC dataset provided by [Semantic contours from inverse detectors](http://ieeexplore.ieee.org/document/6126343/).
 
-The training data is composed of 7,922 images. 5,623 from the training set and 2,299 from the validation set. To test the model using the original VOC 2012 val dataset, I removed 558 images from the training set. These 558 samples were also present on the official VOC validation set. Finally, 10% of the 7,922 images (~792 samples) are held for validation, leaving the rest for training.
+The training data is composed of 8,252 images. 5,623 from the training set and 2,299 from the validation set. To test the model using the original VOC 2012 val dataset, I removed 558 images from the 2,299 validation set. These 558 samples were also present on the official VOC validation set. Also, I added 330 images from the VOC 2012 train set that weren't present neither among the 5,623 nor the 2,299 sets. Finally, 10% of the 8,252 images (~825 samples) are held for validation, leaving the rest for training.
 
 Note that different from the original paper, this implementation is not pre-trained in the COCO dataset. Also, some of the techniques described in the paper for training and evaluation were not queried out.
 
