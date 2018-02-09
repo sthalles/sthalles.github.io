@@ -14,9 +14,9 @@ This piece provides an introduction to Semantic Segmentation with a hands-on Ten
 
 ## Semantic Segmentation
 
-Regular image classification DCNNs have similar structure. These models take images as input and output a single value representing a category label.
+Regular image classification DCNNs have similar structure. These models take images as input and output a single value representing the category of that image.
 
-Usually, these models have four main operations. *Convolutions*, *activation function*, *pooling*, and *fully-connected layers*. Passing an image through a series of these operations, outputs a feature vector containing the probabilities for each class label. Note that in this setup, we categorize an image as whole. That is, we assign a single label to an entire image.
+Usually, classification DCNNs have four main operations. *Convolutions*, *activation function*, *pooling*, and *fully-connected layers*. Passing an image through a series of these operations, outputs a feature vector containing the probabilities for each class label. Note that in this setup, we categorize an image as whole. That is, we assign a single label to an entire image.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/cnns.jpg" alt="ResNet bottleneck layer">
@@ -34,7 +34,7 @@ Keep in mind that semantic segmentation doesn't differentiate between object ins
   <figcaption class="caption center">Difference between Semantic Segmentation and Instance Segmentation. (middle) Although they are the same object (bus) they are classified as different objects. (left) Same object, equal category.</figcaption>
 </figure>
 
-Yet, regular DCNNs such as the AlexNet and VGG aren't suitable for dense prediction tasks. First, these models contain many layers designed to reduce the spatial dimensions of the input features. These layers end up producing highly decimated feature vectors that lack sharp details. Second, fully-connected layers have fixed sizes and loose spatial information during computation.
+Yet, regular DCNNs such as the AlexNet and VGG aren’t suitable for dense prediction tasks. First, these models contain many layers designed to reduce the spatial dimensions of the input features. As a consequence, these layers end up producing highly decimated feature vectors that lack sharp details. Second, fully-connected layers have fixed sizes and loose spatial information during computation.
 
 As an example, instead of having pooling and fully-connected layers, imagine passing an image through a series of convolutions. We can set each convolution to have *stride of 1* and "SAME" padding. ***Doing this, each convolution preserves the spatial dimensions of its input***. We can stack a bunch of these convolutions and have a segmentation model.
 
@@ -43,7 +43,7 @@ As an example, instead of having pooling and fully-connected layers, imagine pas
   <figcaption class="caption center"> Fully-Convolution neural network for dense prediction task. Note the non-existence of pooling and fully-connected layers. </figcaption>
 </figure>
 
-This model could output a probability tensor with shape *[W,H,C]*, where W and H represents the Width and Height. And C the number of class labels. Applying the argmax function (on the second axis) gives us a tensor shape of *[W,H,1]*. After, we compute the cross entropy loss between each pixel of the ground-truth images and our predictions. In the end, we average that value and train the network using back prop.
+This model could output a probability tensor with shape *[W,H,C]*, where W and H represents the Width and Height. And C the number of class labels. Applying the argmax function (on the third axis) gives us a tensor shape of *[W,H,1]*. After, we compute the cross entropy loss between each pixel of the ground-truth images and our predictions. In the end, we average that value and train the network using back prop.
 
 There is one problem with this approach though. As we mentioned, using convolutions with stride 1 and "SAME" padding preserves the input dimensions. However, doing that would make the model super expensive in both ways. Memory consumption and computation complexity.
 
