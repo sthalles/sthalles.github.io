@@ -16,7 +16,7 @@ This piece provides an introduction to Semantic Segmentation with a hands-on Ten
 
 Regular image classification DCNNs have similar structure. These models take images as input and output a single value representing the category of that image.
 
-Usually, classification DCNNs have four main operations. *Convolutions*, *activation function*, *pooling*, and *fully-connected layers*. Passing an image through a series of these operations, outputs a feature vector containing the probabilities for each class label. Note that in this setup, we categorize an image as whole. That is, we assign a single label to an entire image.
+Usually, classification DCNNs have four main operations. *Convolutions*, *activation function*, *pooling*, and *fully-connected layers*. Passing an image through a series of these operations outputs a feature vector containing the probabilities for each class label. Note that in this setup, we categorize an image as a whole. That is, we assign a single label to an entire image.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/cnns.jpg" alt="ResNet bottleneck layer">
@@ -25,9 +25,9 @@ Usually, classification DCNNs have four main operations. *Convolutions*, *activa
 
 *Image credits: [Convolutional Neural Network MathWorks](https://www.mathworks.com/discovery/convolutional-neural-network.html).*
 
-Different from image classification, in semantic segmentation we want to make decisions for every pixel in an image. So, for each pixel, the model needs to classify it as one of the pre-determined classes. Put another way, semantic segmentation means understanding images in a pixel level.
+Different from image classification, in semantic segmentation we want to make decisions for every pixel in an image. So, for each pixel, the model needs to classify it as one of the pre-determined classes. Put another way, semantic segmentation means understanding images at a pixel level.
 
-Keep in mind that semantic segmentation doesn't differentiate between object instances. Here, we try to assign an individual label to each pixel of a digital image. Thus, if we have two objects of the same class, they end up having the same category label. Instance Segmentation is the class of problems that differentiates instances of the same class.
+Keep in mind that semantic segmentation doesn't differentiate between object instances. Here, we try to assign an individual label to each pixel of a digital image. Thus, if we have two objects of the same class, they end up having the same category label. Instance Segmentation is the class of problems that differentiate instances of the same class.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/object_class_segmentation.png" alt="ResNet bottleneck layer">
@@ -43,7 +43,7 @@ As an example, instead of having pooling and fully-connected layers, imagine pas
   <figcaption class="caption center"> Fully-Convolution neural network for dense prediction task. Note the non-existence of pooling and fully-connected layers. </figcaption>
 </figure>
 
-This model could output a probability tensor with shape *[W,H,C]*, where W and H represents the Width and Height. And C the number of class labels. Applying the argmax function (on the third axis) gives us a tensor shape of *[W,H,1]*. After, we compute the cross entropy loss between each pixel of the ground-truth images and our predictions. In the end, we average that value and train the network using back prop.
+This model could output a probability tensor with shape *[W,H,C]*, where W and H represent the Width and Height. And C the number of class labels. Applying the argmax function (on the third axis) gives us a tensor shape of *[W,H,1]*. After, we compute the cross-entropy loss between each pixel of the ground-truth images and our predictions. In the end, we average that value and train the network using back prop.
 
 There is one problem with this approach though. As we mentioned, using convolutions with stride 1 and "SAME" padding preserves the input dimensions. However, doing that would make the model super expensive in both ways. Memory consumption and computation complexity.
 
@@ -69,7 +69,7 @@ After the first part, we have a feature vector with shape [w,h,d] where w, h and
 
 At this point, regular classification DCNNs would output a dense (non-spatial) vector containing probabilities for each class label. Instead, we feed this compressed feature vector to a series of upsampling layers. These layers work on reconstructing the output of the first part of the network. ***The goal is to increase the spatial resolution so the output vector has the same dimensions as the input***.
 
-Usually, upsampling layers are based on *strided transpose convolutions*. ***These functions go from deep and narrow layers to wider and shallower ones***. Here, we use transpose convolutions to increase feature vectors dimension to a desired value.
+Usually, upsampling layers are based on *strided transpose convolutions*. ***These functions go from deep and narrow layers to wider and shallower ones***. Here, we use transpose convolutions to increase feature vectors dimension to the desired value.
 
 In most papers, these two components of a segmentation network are called: encoder and decoder. In short, the first, "encodes" its information into a compressed vector used to represent its input. The second (the decoder) works on reconstructing this signal to the desired outcome.
 
@@ -85,7 +85,7 @@ Different from most encoder-decoder designs, Deeplab offers a different approach
 
 *Image credits: [Rethinking Atrous Convolution for Semantic Image Segmentation](https://arxiv.org/abs/1706.05587).*
 
-Deeplab uses an ImageNet-pretrained ResNet as its main feature extractor network. However, it proposes a new Residual block for multi-scale feature learning. Instead of regular convolutions, the last ResNet block uses atrous convolutions. Also, each convolution (within this new block) uses different dilation rates to capture multi-scale context.
+Deeplab uses an ImageNet pre-trained ResNet as its main feature extractor network. However, it proposes a new Residual block for multi-scale feature learning. Instead of regular convolutions, the last ResNet block uses atrous convolutions. Also, each convolution (within this new block) uses different dilation rates to capture multi-scale context.
 
 Additionally, on top of this new block, it uses Atrous Spatial Pyramid Pooling (ASPP). ASPP uses dilated convolutions with different rates as an attempt of classifying regions of an arbitrary scale.
 
@@ -110,7 +110,7 @@ The baseline unit contains two *3x3* convolutions with Batch Normalization(BN) a
 
 The second, the bottleneck unit, consists of three stacked operations. A series of *1x1*, *3x3* and *1x1* convolutions substitute the previous design. The two *1x1* operations are designed for reducing and restoring dimensions. This leaves the *3x3* convolution, in the middle, to operate on a less dense feature vector. Also, BN is applied after each convolution and before ReLU non-linearity.
 
-To help understanding, let's denote these group of operations as a function *F* of its input *x*.
+To help to understand, let's denote these group of operations as a function *F* of its input *x*.
 
 After the non-linear transformations in *F(x)*, the unit combines the result of *F(x)* with the original input *x*. This combination is done by adding the two functions. Merging the original input *x* with the non-linear function *F(x)* offers some advantages. It allows earlier layers to access the gradient signal from later layers. In other words, skipping the operations on *F(x)* allows earlier layers to have access to a stronger gradient signal. As a result, this type of connectivity has been shown to ease the training of deeper networks.
 
@@ -118,7 +118,7 @@ Non-bottleneck units also show gain in accuracy as we increase model capacity. Y
 
 In practice, *bottleneck* units are more suitable for training deeper models because of less training time and computational resources need.
 
-For our implementation, we use the ***full pre-activatiom Residual Unit***. The only difference, from the standard bottleneck unit, lies in the order in which BN and ReLU activations are placed. For the full pre-activatiom, BN and ReLU (in this order) occur before convolutions.
+For our implementation, we use the ***full pre-activation Residual Unit***. The only difference, from the standard bottleneck unit, lies in the order in which BN and ReLU activations are placed. For the full pre-activation, BN and ReLU (in this order) occur before convolutions.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/various_resnet_based_blocks.png" alt="ResNet bottleneck layer">
@@ -129,7 +129,7 @@ For our implementation, we use the ***full pre-activatiom Residual Unit***. The 
 
 As shown in [Identity Mappings in Deep Residual Networks](https://arxiv.org/abs/1603.05027), the full pre-activation unit performs better than other variants.
 
-*Note that the only difference among these designs is the order of BN and RELu in the convolution stack.*
+*Note that the only difference between these designs is the order of BN and RELu in the convolution stack.*
 
 ### Atrous Convolutions
 
@@ -137,7 +137,7 @@ Atrous (or dilated) convolutions are regular convolutions with a factor that all
 
 Consider a *3x3* convolution filter for instance. When the dilation rate is equal to 1, it behaves like a standard convolution. But, if we set the dilation factor to 2, it has the effect of enlarging the convolution kernel.
 
-In theory, it works like that. First, it expands (dilates) the convolution filter according to the dilation rate. Second, it fills the empty spaces with zeros - creating an sparse like filter. Finally, it performs regular convolution using the dilated filter.
+In theory, it works like that. First, it expands (dilates) the convolution filter according to the dilation rate. Second, it fills the empty spaces with zeros - creating a sparse like filter. Finally, it performs regular convolution using the dilated filter.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/atrous_conv.png" alt="ResNet bottleneck layer">
@@ -148,7 +148,7 @@ As a consequence, a convolution with a dilated 2, *3x3* filter would make it abl
 
 In a similar way, setting the atrous factor to 3 allows a regular *3x3* convolution to get signals from a *7x7* corresponding area.
 
-This effect allows us to control the resolution at which we compute feature responses. Also, atrous convolution adds larger context without increasing the number of parameters or the amount of computations.
+This effect allows us to control the resolution at which we compute feature responses. Also, atrous convolution adds larger context without increasing the number of parameters or the amount of computation.
 
 Deeplab also shows that the dilation rate must be tuned according to the size of the feature maps. They studied the consequences of using large dilation rates over small feature maps.
 
@@ -165,11 +165,11 @@ Put in another way, the efficiency of atrous convolutions depends on a good choi
 
 For an output stride of 16, an image size of *224x224x3* outputs a feature vector with 16 times smaller dimensions. That is *14x14*.
 
-Besides, Deeplab also debates the effects of different output strides on segmentation models. ***It argues that excessive signal decimation is harmful for dense prediction tasks***. In short, models with smaller output stride - less signal decimation - tends to output finer segmentation results. Yet, training models with smaller output stride demands more training time.
+Besides, Deeplab also debates the effects of different output strides on segmentation models. ***It argues that excessive signal decimation is harmful for dense prediction tasks***. In short, models with smaller output stride - less signal decimation - tends to output finer segmentation results. Yet, training models with smaller output stride demand more training time.
 
-Deeplab reports experiments with two configurations of output strides, 8 and 16. As expected, output stride = 8 was able to result slightly better results. Here we choose output stride = 16 for practical reasons.
+Deeplab reports experiments with two configurations of output strides, 8 and 16. As expected, output stride = 8 was able to produce slightly better results. Here we choose output stride = 16 for practical reasons.
 
-Also, because the atrous block does't implement downsampling, ASPP also runs on the same feature response size. As a result, it allows learning features from multi-scale context using relative large dilation rates.
+Also, because the atrous block doesn't implement downsampling, ASPP also runs on the same feature response size. As a result, it allows learning features from multi-scale context using relative large dilation rates.
 
 The new Atrous Residual Block contains three residual units. In total, the 3 units have three *3x3* convolutions. Motivated by *multigrid* methods, Deeplab proposes different dilation rates for each convolution. In summary, *multigrid* defines the dilation rates for each of the three convolutions.
 
@@ -179,7 +179,7 @@ For the new block4, when output stride = 16 and ***Multi Grid = (1, 2, 4)***, th
 
 ### Atrous Spatial Pyramid Pooling
 
-For ASPP, the idea is to provide the model with multi-scale information. To do that, ASPP adds a series atrous convolutions with different dilation rates. These rates are designed to capture long range context. Also, to add global context information, ASPP incorporates image-level features via Global Average Pooling (GAP).
+For ASPP, the idea is to provide the model with multi-scale information. To do that, ASPP adds a series atrous convolutions with different dilation rates. These rates are designed to capture long-range context. Also, to add global context information, ASPP incorporates image-level features via Global Average Pooling (GAP).
 
 This version of ASPP contains 4 parallel operations. These are a *1x1* convolution and three *3x3* convolutions with *dilation rates =(6,12,18)*. As we mentioned, at this point, the feature maps' nominal stride is equal to 16.
 
@@ -220,7 +220,7 @@ def atrous_spatial_pyramid_pooling(net, scope, depth=256):
         return net
 {% endhighlight %}
 
-In the end, the features, from all the branches, are combined to a single vector via concatenation. This output is then convoluted with another *1x1* kernel - using BN and 256 filters.
+In the end, the features, from all the branches, are combined into a single vector via concatenation. This output is then convoluted with another *1x1* kernel - using BN and 256 filters.
 
 After ASPP, we feed the result to another *1x1* convolution - to produce the final segmentation logits.
 
@@ -304,7 +304,7 @@ with tf.variable_scope('unit_%d' % (i + 1), values=[net]):
 
 To train the network, we decided to use the augmented Pascal VOC dataset provided by [Semantic contours from inverse detectors](http://ieeexplore.ieee.org/document/6126343/).
 
-The training data is composed of 8,252 images. 5,623 from the training set and 2,299 from the validation set. To test the model using the original VOC 2012 val dataset, I removed 558 images from the 2,299 validation set. These 558 samples were also present on the official VOC validation set. Also, I added 330 images from the VOC 2012 train set that weren't present neither among the 5,623 nor the 2,299 sets. Finally, 10% of the 8,252 images (~825 samples) are held for validation, leaving the rest for training.
+The training data is composed of 8,252 images. 5,623 from the training set and 2,299 from the validation set. To test the model using the original VOC 2012 val dataset, I removed 558 images from the 2,299 validation set. These 558 samples were also present on the official VOC validation set. Also, I added 330 images from the VOC 2012 train set that weren’t present neither among the 5,623 nor the 2,299 sets. Finally, 10% of the 8,252 images (~825 samples) are held for validation, leaving the rest for training.
 
 Note that different from the original paper, this implementation is not pre-trained in the COCO dataset. Also, some of the techniques described in the paper for training and evaluation were not queried out.
 
