@@ -326,6 +326,6 @@ Bellow, you can check out some of the results in a variety of images from the PA
 
 ## Concluding
 
-The field on Semantic Segmentation is no doubt one of the hottest ones in Computer Vision. Deeplab presents an alternative to classic encoder-decoder architectures. It advocates the usage of atrous convolutions for feature learning in multi-range contexts. Feel free to clone the repo and tune the model to achieve closer results to the original implementation. The complete code is [here](https://github.com/sthalles/deeplab_v3).
+The field of Semantic Segmentation is no doubt one of the hottest ones in Computer Vision. Deeplab presents an alternative to classic encoder-decoder architectures. It advocates the usage of atrous convolutions for feature learning in multi-range contexts. Feel free to clone the repo and tune the model to achieve closer results to the original implementation. The complete code is [here](https://github.com/sthalles/deeplab_v3).
 
 Hope you like reading!
