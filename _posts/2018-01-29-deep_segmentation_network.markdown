@@ -154,7 +154,7 @@ Deeplab also shows that the dilation rate must be tuned according to the size of
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/deep_segmentation_network/extreme_dilation.png" alt="ResNet bottleneck layer">
-  <figcaption class="caption center">Side effects of setting larger dilation rates for smaller feature maps. For a 14x14 input image, a *3x3* filter with dilation rate of 14 makes the atrous convolution behaves like a regular 1x1 convolution.</figcaption>
+  <figcaption class="caption center">Side effects of setting larger dilation rates for smaller feature maps. For a 14x14 input image, a *3x3* filter with dilation rate of 15 makes the atrous convolution behaves like a regular 1x1 convolution.</figcaption>
 </figure>
 
 When the dilation rate is very close to the feature map's size, a regular *3x3* atrous filter acts as a standard *1x1* convolution.
