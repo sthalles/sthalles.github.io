@@ -97,17 +97,16 @@ DeepLab is Google’s best semantic segmentation ConvNet. Basically, the network
 
 This version was trained on the [Pascal VOC](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/) segmentation dataset. Thus, it can segment and recognize up to 20 classes. If you want to know more about Semantic Segmentation and DeepLab-v3, take a look at [Diving into Deep Convolutional Semantic Segmentation Networks and Deeplab_V3](https://medium.freecodecamp.org/diving-into-deep-convolutional-semantic-segmentation-networks-and-deeplab-v3-4f094fa387df).
 
-Inside the ```./deeplab_v3``` folder, there are two important files: *deeplab_save_model.py* and *DeepLab_Client.ipynb*.
-
+All the files related to serving reside into: ```./deeplab_v3/serving/```. There, you will find two important files: [deeplab_saved_model.py](https://github.com/sthalles/deeplab_v3/blob/master/serving/deeplab_saved_model.py) and [deeplab_client.ipynb](https://github.com/sthalles/deeplab_v3/blob/master/serving/deeplab_client.ipynb)
 Before going further, make sure to download the Deeplab-v3 pre-trained model. Head to the GitHub repository above, click on the checkpoints link, and download the folder named ```16645/```.
 
 In the end, you should have a folder named ```tboard_logs/``` with the ```16645/``` folder placed inside it.
-
+''
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/serving_tf_models/setup_overview.png" alt="ResNet bottleneck layer">
 </figure>
 
-Now, we need to create two Python virtual environments. One for Python 3 and another for Python 2. For each env, make sure to install the necessary dependencies. You can find them in the *serving_requirements.txt* and *client_requirements.txt* files.
+Now, we need to create two Python virtual environments. One for Python 3 and another for Python 2. For each env, make sure to install the necessary dependencies. You can find them in the [serving_requirements.txt](https://github.com/sthalles/deeplab_v3/blob/master/serving/serving_requirements.txt) and [client_requirements.txt](https://github.com/sthalles/deeplab_v3/blob/master/serving/client_requirements.txt) files.
 
 We need two Python envs because our model, DeepLab-v3, was developed under Python 3. However, the TensorFlow Serving Python API is only published for Python 2. Therefore, to export the model and run TF serving, we use the Python 3 env. For running the client code using the TF Serving python API, we use the PIP package (only available for Python 2).
 
@@ -149,9 +148,9 @@ That is it. Now we call the *add_meta_graph_and_variables()* function to build t
 
 {% gist 7130ce6e1811630c86634a38f0448ce3 %}
 
-We can now run *deeplab_save_model.py* to export our model.
+We can now run [deeplab_saved_model.py](https://github.com/sthalles/deeplab_v3/blob/master/serving/deeplab_saved_model.py) to export our model.
 
-If everything went well you will see the folder ```./serving/deeplab/1```. Note that the ‘1’ represents the current version of the model. Inside each version sub-directory, you will see the following files:
+If everything went well you will see the folder ```./serving/versions/1```. Note that the ‘1’ represents the current version of the model. Inside each version sub-directory, you will see the following files:
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/serving_tf_models/exported_model_overview.png" alt="ResNet bottleneck layer">
@@ -164,14 +163,14 @@ If everything went well you will see the folder ```./serving/deeplab/1```. Note 
 Now, we are ready to launching our model server. To do that, run:
 
 {% highlight Bash shell scripts %}
-$ tensorflow_model_server --port=9000 --model_name=deeplab --model_base_path=<path/to/serving/deeplab/>
+$ tensorflow_model_server --port=9000 --model_name=deeplab --model_base_path=<full/path/to/serving/versions/>
 {% endhighlight %}
 
 The *model_base_path* refers to where the exported model was saved. Also, we do not specify the version folder in the path. The model versioning control is handled by TF Serving.
 
 ### Generating Client Requests
 
-The client code is very straightforward. Take a look at it in: *DeepLab_Client.ipynb*.
+The client code is very straightforward. Take a look at it in: [deeplab_client.ipynb](https://github.com/sthalles/deeplab_v3/blob/master/serving/deeplab_client.ipynb).
 
 First, we read the image we want to send to the server and convert it to the right format.
 
