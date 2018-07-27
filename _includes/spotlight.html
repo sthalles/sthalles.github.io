@@ -1,0 +1,12 @@
+<h4> References </h4>
+
+<ol>
+{% for person in include.participants %}
+<li>
+   <span class="title_color"> {{ person.title }}</span>
+   <a name={{forloop.index}} href={{person.url}}> PDF </a>
+   <p> {{ person.authors }} - {{person.year}}</p>
+</li>
+
+{% endfor %}
+</ol>

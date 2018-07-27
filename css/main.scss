@@ -18,21 +18,22 @@ $large-font-size:           $base-font-size * 1.25 !default;
 $base-line-height:          1.5 !default;
 $spacing-unit:              30px !default;
 
-$secondary-color:           #3F51B5 !default;
+$secondary-color:           #3F51B5 !default; // Indigo
 $secondary-color-darker800: #283593 !default;
-$secondary-color-lighter100:#E8EAF6 !default;
+$secondary-color-lighter50: #E8EAF6 !default;
+$secondary-color-lighter100: #C5CAE9 !default;
 
-$primary-color:             #607D8B !default;
+$primary-color:             #607D8B !default; // Blue Grey
 $primary-color-lighter50:   #ECEFF1 !default;
 $primary-color-lighter100:  #CFD8DC !default;
 $primary-color-darker800:   #37474F !default;
 $primary-color-darker900:   #263238 !default;
 
-$text-color_:               #263238 !default;                     
+$text-color_:               #263238 !default;
 $primary-text-color:        lighten($text-color_, 13%) !default;
 $secondary-text-color:      lighten($text-color_, 46%) !default;
 $disabled-text-color:       lighten($text-color_, 62%) !default;
-                 
+
 $inverse-primary-text-color:        $primary-color-lighter50 !default;
 $inverse-secondary-text-color:      darken($inverse-primary-text-color, 30%) !default;
 $inverse-disabled-text-color:       darken($inverse-primary-text-color, 50%) !default;
@@ -64,4 +65,5 @@ $on-palm:          600px !default;
 @import "bootstrap";
 @import "index";
 @import "syntax-highlighting";
+@import "references";
 @import "footer";

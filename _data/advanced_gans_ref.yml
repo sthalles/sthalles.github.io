@@ -1,0 +1,24 @@
+- authors: Zhang, H., Goodfellow, I., Metaxas, D., & Odena, A.
+  year: 2018
+  title: Self-Attention Generative Adversarial Networks.
+  url: https://doi.org/arXiv:1805.08318v1
+
+- authors: Miyato, T., Kataoka, T., Koyama, M., & Yoshida, Y.
+  year: 2018
+  title: Spectral Normalization for Generative Adversarial Networks.
+  url: http://arxiv.org/abs/1802.05957
+
+- authors: Radford, A., Metz, L., & Chintala, S.
+  year: 2015
+  title: Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks.
+  url: https://doi.org/10.1051/0004-6361/201527329
+
+- authors: Goodfellow, I. J., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., Bengio, Y
+  year: 2014
+  title: Generative Adversarial Networks.
+  url: https://doi.org/10.1001/jamainternmed.2016.8245
+
+- authors: M. Heusel, H. Ramsauer, T. Unterthiner, B. Nessler, and S. Hochreiter
+  year: 2017
+  title: Gans trained by a two time-scale update rule converge to a local nash equilibrium.
+  url: https://arxiv.org/abs/1706.08500

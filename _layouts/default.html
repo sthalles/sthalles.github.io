@@ -4,7 +4,7 @@
 
 <body ng-app="MyBlog">
   {% include header.html %}
-  
+
   <div class="content-container">
     <main>
         <article>
@@ -12,6 +12,15 @@
         </article>
     </main>
   </div>
+
+  {%if page.reference_file == "advanced_gans_ref"%}
+  <div class="reference-section-backcolor">
+    <div class="content-container">
+      {% include spotlight.html participants=site.data.advanced_gans_ref %}
+    </div>
+  </div>
+  {% endif %}
+
   {% include footer.html %}
   {% if jekyll.environment == 'production' %}
   <script>

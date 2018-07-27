@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  margin-bottom: 200px !important;
+  margin-bottom: 70px !important;
 }
 
 .caption {
@@ -33,7 +33,7 @@ body {
 }
 
 .post {
-  border-bottom: 1px solid;
+  // border-bottom: 1px solid;
   border-bottom-color: lightgrey;
   padding: 8px 0 12px 0;
 
@@ -55,7 +55,7 @@ body {
 strong em {
   font-style: normal;
   font-weight: $large-font-weight !important;
-  background-color: $secondary-color-lighter100;
+  background-color: $secondary-color-lighter50;
 }
 
 a.light:hover {
