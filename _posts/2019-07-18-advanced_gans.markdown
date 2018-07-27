@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Advanced GANs - Normalization techniques for Generator and Discriminator training."
-date:   2018-08-30 08:00:00 -0300
+date:   2019-08-30 08:00:00 -0300
 categories: deep learning
 short_description: "..."
 image_url: "/assets/serving_tf_models/tf_serving_cover.jpeg"
