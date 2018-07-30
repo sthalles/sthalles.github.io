@@ -22,3 +22,8 @@
   year: 2017
   title: Gans trained by a two time-scale update rule converge to a local nash equilibrium.
   url: https://arxiv.org/abs/1706.08500
+
+- authors: Miyato, T., & Koyama, M.
+  year: 2018
+  title: cGANs with Projection Discriminator.
+  url: Retrieved from http://arxiv.org/abs/1802.05637
