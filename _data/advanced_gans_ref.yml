@@ -1,22 +1,22 @@
 - authors: Zhang, H., Goodfellow, I., Metaxas, D., & Odena, A.
   year: 2018
   title: Self-Attention Generative Adversarial Networks.
-  url: https://doi.org/arXiv:1805.08318v1
+  url: https://arxiv.org/abs/1805.08318
 
 - authors: Miyato, T., Kataoka, T., Koyama, M., & Yoshida, Y.
   year: 2018
   title: Spectral Normalization for Generative Adversarial Networks.
-  url: http://arxiv.org/abs/1802.05957
+  url: https://arxiv.org/abs/1802.05957
 
 - authors: Radford, A., Metz, L., & Chintala, S.
   year: 2015
   title: Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks.
-  url: https://doi.org/10.1051/0004-6361/201527329
+  url: https://arxiv.org/abs/1511.06434
 
 - authors: Goodfellow, I. J., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., Bengio, Y
   year: 2014
   title: Generative Adversarial Networks.
-  url: https://doi.org/10.1001/jamainternmed.2016.8245
+  url: https://arxiv.org/abs/1406.2661
 
 - authors: M. Heusel, H. Ramsauer, T. Unterthiner, B. Nessler, and S. Hochreiter
   year: 2017
@@ -25,10 +25,10 @@
 
 - authors: Augustus Odena, Jacob Buckman, Catherine Olsson, Tom B. Brown, Christopher Olah, Colin Raffel, Ian Goodfellow.
   year: 2018
-  title: Is Generator Conditioning Causally Related to GAN Performance?.
-  url: Retrieved from https://arxiv.org/pdf/1802.08768.pdf
+  title: Is Generator Conditioning Causally Related to GAN Performance.
+  url: https://arxiv.org/abs/1802.08768
 
 - authors: Ziwei Liu and Ping Luo and Xiaogang Wang and Xiaoou Tang.
   year: 2015
   title: Deep Learning Face Attributes in the Wild.
-  url: http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html
+  url: https://arxiv.org/abs/1411.7766

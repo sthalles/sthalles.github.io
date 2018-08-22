@@ -102,7 +102,7 @@ It is important to note that the spectral normalization (SN) algorithm introduce
 
 Applying singular value decomposition at each step might be computational expansive. Instead, [Miyato et al](#2) uses the ***power iteration method*** to estimate the spectral normal of each layer.
 
-To implement SN using Tensorflow eager execution with the Keras layers, we had to download and tweak the [convolutions.py](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py) file. The complete code can be accessed here. Bellow we show the juicy parts of the algorithm.
+To implement SN using Tensorflow eager execution with the Keras layers, we had to download and tweak the [convolutions.py](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py) file. The complete code can be accessed [here](https://github.com/sthalles/blog-resources/blob/master/sagan/libs/convolutions.py). Bellow we show the juicy parts of the algorithm.
 
 To begin, we randomly initialize a vector *u* as following.
 
