@@ -35,7 +35,7 @@ However, keep in mind that regardless of representation learning or hand-crafted
 
 Let's take some steps back and consider a simpler problem. 
 
-In this piece, we are going to explore how Fisher's Linear Discriminant (FLD) manages to classify multi-dimensional data.
+In this piece, we are going to explore how Fisher's Linear Discriminant (FLD) manages to classify multi-dimensional data. But before we begin, feel free to open this [***Colab notebook***](https://github.com/sthalles/fishers-linear-discriminant/blob/master/Fishers_Multiclass.ipynb) and follow along.
 
 ## Fisher's Linear Discriminant
 
@@ -167,5 +167,8 @@ Using MNIST as a toy testing dataset. If we choose to reduce the original input 
 <figure>
   <img name="sn_algorithm" class="img-responsive center-block" src="{{ site.url }}/assets/fisher-ld/mnist-3d.png" alt="Spectral Norm algorithm">
 </figure>
+
+This article is based on **chapter 4.1.6** of [Pattern Recognition and Machine Learning](https://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738).
+*Book by Christopher Bishop*
 
 Thanks for reading!
