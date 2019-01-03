@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "An illustrative introduction to Fisher's Linear Discriminant"
-date:   2019-01-01 08:00:00 -0300
+date:   2019-01-30 08:00:00 -0300
 categories: machine learning
 short_description: "..."
 image_url: "/assets/fisher-ld/cover.jpeg"
