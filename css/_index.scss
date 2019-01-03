@@ -52,6 +52,11 @@ body {
   font-size: $small-font-size;
 }
 
+strong {
+  font-style: normal;
+  font-weight: $large-font-weight !important;
+}
+
 strong em {
   font-style: normal;
   font-weight: $large-font-weight !important;
