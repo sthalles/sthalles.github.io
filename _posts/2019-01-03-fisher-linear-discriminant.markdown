@@ -172,9 +172,11 @@ Using MNIST as a toy testing dataset. If we choose to reduce the original input 
 
 These are some key takeaways from this piece.
 
-- Fisher's Linear Discriminant, in essence, is a technique for dimensionality reduction, not a discriminant. For binary classification, we can find an optimal threshold t and classify the data accordingly. For multiclass data, we can (1) model a class conditional distribution using a Gaussian. (2) Find the prior class probabilities P(Ck), and (3) use Bayes to find the posterior class probabilities p(Ck|x).
+- Fisher's Linear Discriminant, in essence, is a technique for dimensionality reduction, not a discriminant. For binary classification, we can find an optimal threshold **t** and classify the data accordingly. For multiclass data, we can (1) model a class conditional distribution using a Gaussian. (2) Find the prior class probabilities *P(Ck)*, and (3) use Bayes to find the posterior class probabilities ```p(Ck|x)```.
+
 - To find the optimal direction to project the input data, Fisher needs supervised data.
-- Given a dataset with D dimensions, we can project it down to to at most D' equals to D-1.
+
+- Given a dataset with **D** dimensions, we can project it down to to at most **D'** equals to **D-1**.
 
 This article is based on **chapter 4.1.6** of [Pattern Recognition and Machine Learning](https://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738).
 *Book by Christopher Bishop*
