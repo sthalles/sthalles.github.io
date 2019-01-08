@@ -176,7 +176,7 @@ These are some key takeaways from this piece.
 
 - To find the optimal direction to project the input data, Fisher needs supervised data.
 
-- Given a dataset with **D** dimensions, we can project it down to to at most **D'** equals to **D-1**.
+- Given a dataset with **D** dimensions, we can project it down to at most **D'** equals to **D-1**.
 
 This article is based on **chapter 4.1.6** of [Pattern Recognition and Machine Learning](https://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738).
 *Book by Christopher Bishop*
