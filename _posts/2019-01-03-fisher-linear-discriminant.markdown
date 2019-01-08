@@ -27,7 +27,7 @@ That is what happens if we square the two input feature-vectors. Now, a linear m
   <img class="img-responsive center-block" src="{{ site.url }}/assets/fisher-ld/feature_transformation.png" alt="linearly inseparable data">
 </figure>
 
-However, sometimes we do not know which kind of transformation we should use. Actually, to find the best representation is not a trivial problem. There are many transformations we could apply to our data. Likewise, each one of them could result is a different classifier (in terms of performance).
+However, sometimes we do not know which kind of transformation we should use. Actually, to find the best representation is not a trivial problem. There are many transformations we could apply to our data. Likewise, each one of them could result in a different classifier (in terms of performance).
 
 One solution to this problem is to learn the right transformation. This is known as ***representation learning*** and it is exactly what you are thinking - Deep Learning. The magic is that we do not need to "guess" what kind of transformation would result in the best representation of the data. The algorithm will figure it out.
 
@@ -43,12 +43,14 @@ In this piece, we are going to explore how Fisher's Linear Discriminant (FLD) ma
 
 To begin, consider the case of a two-class classification problem **(K=2)**. Blue and red points in R². In general, we can take any D-dimensional input vector and project it down to D'-dimensions. Here, **D** represents the original input dimensions while **D'** is the projected space dimensions. Throughout this article, consider **D'** less than **D**.
 
-In the case of projecting to one dimension, i.e. **D'=1**, we can pick a threshold **t** to separate the classes in the new space. Given an input vector **x**:
+In the case of projecting to one dimension (the number line), i.e. **D'=1**, we can pick a threshold **t** to separate the classes in the new space. Given an input vector **x**:
 
 - if the predicted value *y >= t* then, **x** belongs to class C1 (class 1) - where ![](https://latex.codecogs.com/gif.latex?y%20%3D%20W%5ET%5Cboldsymbol%7Bx%7D).
 - otherwise, it is classified as C2 (class 2).
 
-Take the dataset below as a toy example. We want to reduce the original data dimensions from ***D=2*** to ***D'=1***. First, let's compute the mean vectors **m1** and **m2** for the two classes.
+Take the dataset below as a toy example. We want to reduce the original data dimensions from D=2 to D'=1. In other words, we want a transformation T that maps vectors in 2D to 1D - T(v) = ℝ² →ℝ¹.
+
+First, let's compute the mean vectors **m1** and **m2** for the two classes.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/fisher-ld/dataset.png" alt="fisher-ld generator network">
@@ -98,7 +100,7 @@ To find the projection with the following properties, FLD learns a weight vector
   <img class="img-responsive center-block" src="{{ site.url }}/assets/fisher-ld/lda_function_explained.png" alt="fisher-ld generator network">
 </figure>
 
-If we substitute the mean vectors **m1** and **m2** as well as the variance **s** as given by equations (1) and (2) we arrive at equation (3). If we take the derivative of (3) w.r.t **W** (after some simplifications) we get the learning equation for **W** (equation 4). ***That is, **W** is directly proportional to the inverse of the within-class covariance matrix times the difference of the class means.***
+If we substitute the mean vectors **m1** and **m2** as well as the variance **s** as given by equations (1) and (2) we arrive at equation (3). If we take the derivative of (3) w.r.t **W** (after some simplifications) we get the learning equation for **W** (equation 4). ***That is, W (our desired transformation) is directly proportional to the inverse of the within-class covariance matrix times the difference of the class means.***
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/fisher-ld/equations.png" alt="fisher-ld generator network">
@@ -167,6 +169,12 @@ Using MNIST as a toy testing dataset. If we choose to reduce the original input 
 <figure>
   <img name="sn_algorithm" class="img-responsive center-block" src="{{ site.url }}/assets/fisher-ld/mnist-3d.png" alt="Spectral Norm algorithm">
 </figure>
+
+These are some key takeaways from this piece.
+
+- Fisher's Linear Discriminant, in essence, is a technique for dimensionality reduction, not a discriminant. For binary classification, we can find an optimal threshold t and classify the data accordingly. For multiclass data, we can (1) model a class conditional distribution using a Gaussian. (2) Find the prior class probabilities P(Ck), and (3) use Bayes to find the posterior class probabilities p(Ck|x).
+- To find the optimal direction to project the input data, Fisher needs supervised data.
+- Given a dataset with D dimensions, we can project it down to to at most D' equals to D-1.
 
 This article is based on **chapter 4.1.6** of [Pattern Recognition and Machine Learning](https://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738).
 *Book by Christopher Bishop*
