@@ -13,10 +13,15 @@
     </main>
   </div>
 
-  {%if page.reference_file == "advanced_gans_ref"%}
+  {%if page.reference_file%}
   <div class="reference-section-backcolor">
     <div class="content-container">
-      {% include spotlight.html participants=site.data.advanced_gans_ref %}
+        {%if page.reference_file == "advanced_gans_ref"%}
+          {% include spotlight.html participants=site.data.advanced_gans_ref%}
+        {% endif %}
+        {%if page.reference_file == "audio_denoising_ref"%}
+          {% include spotlight.html participants=site.data.audio_denoising_ref%}
+        {% endif %}
     </div>
   </div>
   {% endif %}

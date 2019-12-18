@@ -1,0 +1,28 @@
+- authors: Park, Se Rim and Lee, Jin Won
+  year: 2017
+  title: A fully convolutional neural network for speech enhancement
+  url: https://arxiv.org/abs/1609.07132
+
+- authors: Purwins, Hendrik and Li, Bo and Virtanen, Tuomas and Schluter, Jan and Chang, Shuo Yiin and Sainath, Tara.
+  year: 2019
+  title: Deep Learning for Audio Signal Processing.
+  url: https://arxiv.org/abs/1905.00078
+
+- authors: MathWorks
+  year: 2015
+  title: Denoise Speech Using Deep Learning Networks
+  url: https://www.mathworks.com/help/audio/examples/denoise-speech-using-deep-learning-networks.html
+
+- authors: MathWorks.
+  title: Denoise Speech Using Deep Learning Networks
+  url: https://www.mathworks.com/help/audio/examples/denoise-speech-using-deep-learning-networks.html
+
+- authors: J. Salamon, C. Jacoby and J. P. Bello
+  year: 2014
+  title: A Dataset and Taxonomy for Urban Sound Research
+  url: http://www.justinsalamon.com/uploads/4/3/9/4/4394963/salamon_urbansound_acmmm14.pdf
+
+- authors: Mozilla
+  year: 2019
+  title: Common Voice
+  url: https://voice.mozilla.org/en

@@ -27,7 +27,7 @@ The process usually follows simple steps.
 
 1. **We first load the model architecture and pre-trained weights.** For Computer Vision, where transfer-learning is more established, this is where we load one of these famous architectures like DenseNets, or MobileNets and their respective weights (trained on ImageNet).
 
-2. **We then add a task-specific classification layer on the top of the pre-trained model.** This is usually a dense layer with a softmax or sigmoid activation. Note that the number of units in the classification layer has to be equal to the number of classes of your new problem. So, if your insects dataset contains 28 kinds of bugs and the likes, the last layer needs to have 28 units.
+2. **We then add a task-specific classification layer on the top of the pre-trained model.** This is usually a dense layer with a softmax or sigmoid activation. Note that the number of units in the classification layer has to be equal to the number of classes of your new problem. So, if your insect's dataset contains 28 kinds of bugs and the likes, the last layer needs to have 28 units.
 
 3. Then, we finish up the model preparation. In Keras, we compile the model with an optimizer and a loss function, set up the hyper-parameters, and call fit. 
 
@@ -64,7 +64,7 @@ As a safety check, let's make sure that regularization is properly set. In Keras
 
 {% gist c186f3e98aa6913d7bfe2fafbe418976 %}
 
-*P.S. if you're confused with the nomeclature, the property is called losses, because the regularization penalties are added to the loss function during optimization.*
+*P.S. if you're confused with the nomenclature, the property is called losses, because the regularization penalties are added to the loss function during optimization.*
 
 As you can see, there is something weird going on. **The list is just empty, which means, there no regularization penalty applied to the convolutional kernels.**
  
