@@ -1,0 +1,34 @@
+- authors: Ian Goodfellow, Nicolas Papernot, Sandy Huang, Rocky Duan, Pieter Abbeel, Jack Clark
+  year: 2017
+  title: Attacking Machine Learning with Adversarial Examples
+  url: https://openai.com/blog/adversarial-example-research/
+
+- authors: The AlphaStar team
+  year: 2019
+  title: AlphaStar Mastering the Real-Time Strategy Game StarCraft
+  url: https://deepmind.com/blog/article/alphastar-mastering-real-time-strategy-game-starcraft-ii
+
+- authors: Hessel, Matteo, et al
+  year: 2018
+  title: Rainbow Combining improvements in deep reinforcement learning
+  url: https://arxiv.org/abs/1710.02298
+
+- authors: Jing, Longlong, and Yingli Tian
+  year: 2019
+  title: Self-supervised visual feature learning with deep neural networks A survey
+  url: https://arxiv.org/abs/1902.06162
+
+- authors: Gidaris, Spyros, Praveer Singh, and Nikos Komodakis
+  year: 2018
+  title: Unsupervised representation learning by predicting image rotations
+  url: https://arxiv.org/abs/1803.07728
+
+- authors: Lucic, Mario, et al.
+  year: 2019
+  title: High-fidelity image generation with fewer labels
+  url: https://arxiv.org/abs/1903.02271
+
+- authors: Su, Jiawei, Danilo Vasconcellos Vargas, and Kouichi Sakurai
+  year: 2019
+  title: One pixel attack for fooling deep neural networks
+  url: https://arxiv.org/abs/1710.08864

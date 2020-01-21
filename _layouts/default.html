@@ -22,6 +22,9 @@
         {%if page.reference_file == "audio_denoising_ref"%}
           {% include spotlight.html participants=site.data.audio_denoising_ref%}
         {% endif %}
+        {%if page.reference_file == "self_supervised_ref"%}
+          {% include spotlight.html participants=site.data.self_supervised_ref%}
+        {% endif %}
     </div>
   </div>
   {% endif %}
