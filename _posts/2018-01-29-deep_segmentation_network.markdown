@@ -5,6 +5,7 @@ date:   2018-01-29 08:00:00 -0300
 categories: deep learning
 short_description: "Deep Convolution Neural Networks (DCNNs) have achieved remarkable success in various Computer Vision applications. Like others, the task of semantic segmentation is not an exception to this trend."
 image_url: "/assets/deep_segmentation_network/semantic_segmentation.jpg"
+tags: machine-learning deep-learning representation-learning semantic-segmentation computer-vision deepLab_v3 
 ---
 ## Introduction
 

@@ -5,6 +5,7 @@ date:   2019-01-03 08:00:00 -0300
 categories: machine learning
 short_description: "To deal with problems with 2 or more classes, most ML algorithms work the same way. Usually, they apply some kind of transformation to the input data. The goal is to project the data to a new space. Then, they try to classify the data points by finding a linear separation."
 image_url: "/assets/fisher-ld/cover.png"
+tags: machine-learning deep-learning dimensionality-reduction pca representation-learning
 ---
 
 ## Introduction

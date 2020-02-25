@@ -5,6 +5,7 @@ date:   2019-12-18 08:00:00 -0300
 categories: deep learning
 short_description: "Speech denoising is a long-standing problem. In this article, we use  Convolutional Neural Networks (CNNs) to tackle this problem. Given a noisy input signal, we aim to build a statistical model that can extract the clean signal (the source) and return it to the user."
 reference_file: audio_denoising_ref
+tags: machine-learning deep-learning audio-machine-learning deep-learning-audio audio-denoising tensorflow
 image_url: "/assets/practical-dl-audio-denoising/cover.png"
 ---
 
@@ -29,19 +30,19 @@ As Mozilla puts it on the MCV website:
 
 > **Common Voice is Mozilla's initiative to help teach machines how real people speak.**
 
-The dataset contains as many as 2,454 recorded hours spread in short MP3 files. The project is open source and anyone can collaborate with it. Here, we used the English portion of the data which contains 30GB of 780 validated hours of speech. One very good characteristic of this dataset is the vast variability of speakers. It contains snippets of men and women recordings from a large variety of ages and foreign accents. 
+The dataset contains as many as 2,454 recorded hours spread in short MP3 files. The project is open source and anyone can collaborate with it. Here, we used the English portion of the data which contains 30GB of 780 validated hours of speech. One very good characteristic of this dataset is the vast variability of speakers. It contains snippets of men and women recordings from a large variety of ages and foreign accents.
 
 The UrbanSound8K dataset also contains small snippets (<=4s) of sounds. However, these are 8732 labeled examples of 10 different commonly found urban sounds. The complete list includes:
 
-- 0 = air_conditioner 
-- 1 = car_horn 
-- 2 = children_playing 
-- 3 = dog_bark 
-- 4 = drilling 
-- 5 = engine_idling 
-- 6 = gun_shot 
-- 7 = jackhammer 
-- 8 = siren 
+- 0 = air_conditioner
+- 1 = car_horn
+- 2 = children_playing
+- 3 = dog_bark
+- 4 = drilling
+- 5 = engine_idling
+- 6 = gun_shot
+- 7 = jackhammer
+- 8 = siren
 - 9 = street_music
 
 As you might be imagining at this point, we are going to use the urban sounds as noise signals to the speech examples. In other words, we first take a small speech signal -- this can be someone speaking a random sentence from the MCV dataset. Then, we add noise to it -- you can imagine a woman speaking and a dog backing on the background. Finally, we use this artificially noised signal as the input to our deep learning model. The Neural Net, in turn, receives this noisy signal and tries to output a clean representation of it.
@@ -54,7 +55,7 @@ The image below displays a visual representation of a clean input signal from th
 
 ## Data Preprocessing
 
-Most of the benefits of current deep learning systems rest in the fact that hand-crafted features ceased to be an essential step to build a state of the art model. Take feature extractors like SIFT and SURF as an example. Those are/were often used in Computer Vision problems like [panorama stitching](https://medium.com/me/stats/post/2402bde6b46c). These methods extract features from local parts of an image to construct an internal representation of the image itself. However, to achieve the necessary goal of generalization, a vast amount of work was necessary to create features that were robust enough to real-world scenarios. Put differently, these features needed to be invariant to common transformations that we often see day-to-day. Those might include variations in rotation, translation, scaling, and so on. And despite the hard work put into creating generalizable feature extractors like BRISK and ORB, this task is not pleasant. 
+Most of the benefits of current deep learning systems rest in the fact that hand-crafted features ceased to be an essential step to build a state of the art model. Take feature extractors like SIFT and SURF as an example. Those are/were often used in Computer Vision problems like [panorama stitching](https://medium.com/me/stats/post/2402bde6b46c). These methods extract features from local parts of an image to construct an internal representation of the image itself. However, to achieve the necessary goal of generalization, a vast amount of work was necessary to create features that were robust enough to real-world scenarios. Put differently, these features needed to be invariant to common transformations that we often see day-to-day. Those might include variations in rotation, translation, scaling, and so on. And despite the hard work put into creating generalizable feature extractors like BRISK and ORB, this task is not pleasant.
 
 However, one of the cool things about current deep learning is that most of these properties are learned either from the data and/or from special operations like the convolution.
 
@@ -68,9 +69,9 @@ It is important to note that audio data differ from images. Since one of our ass
   <img class="img-responsive center-block" src="{{ site.url }}/assets/practical-dl-audio-denoising/audio-time-series-plot.png" alt="Audio time series plot">
 </figure>
 
-The Frequency Cepstral Coefficients (MFCCs) and the constant-Q spectrum are 2 of the most popular representations used on audio applications. For deep learning though, we may avoid classic MFCCs because they remove a lot of information and do not preserve spatial relations--this is especially important for audio reconstruction. Additionally, source separation tasks are often done in the time-frequency domain. 
+The Frequency Cepstral Coefficients (MFCCs) and the constant-Q spectrum are 2 of the most popular representations used on audio applications. For deep learning though, we may avoid classic MFCCs because they remove a lot of information and do not preserve spatial relations--this is especially important for audio reconstruction. Additionally, source separation tasks are often done in the time-frequency domain.
 
-Another important point is that audio signals are, in their majority, non-stationary. In other words, the signal's mean and variance are not constant over time. Thus, there is not much sense in computing a Fourier Transform over the entire audio signal. ***For this reason, we feed the DL system with spectral magnitude vectors computed using a 256-point Short Time Fourier Transform (STFT).*** 
+Another important point is that audio signals are, in their majority, non-stationary. In other words, the signal's mean and variance are not constant over time. Thus, there is not much sense in computing a Fourier Transform over the entire audio signal. ***For this reason, we feed the DL system with spectral magnitude vectors computed using a 256-point Short Time Fourier Transform (STFT).***
 
 You can see bellow, common representations of audio signals.
 
@@ -142,7 +143,7 @@ Below, you can compare the denoised CNN estimation (bottom) with the target (cle
   <img class="img-responsive center-block" src="{{ site.url }}/assets/practical-dl-audio-denoising/result-plot-1.png" alt="Audio time series plot">
 </figure>
 
-As you can see, given the difficulty of the task, the results are somewhat acceptable but not perfect. ***Indeed, in most of the examples, the model manages to smooth the noise but it doesn't get rid of it completely.*** 
+As you can see, given the difficulty of the task, the results are somewhat acceptable but not perfect. ***Indeed, in most of the examples, the model manages to smooth the noise but it doesn't get rid of it completely.***
 
 Take a look at a different example, this time with a dog barking in the background.
 

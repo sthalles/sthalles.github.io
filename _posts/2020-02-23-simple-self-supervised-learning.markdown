@@ -4,6 +4,7 @@ title:  "Exploring SimCLR: A Simple Framework for Contrastive Learning of Visual
 date:   2020-02-23 08:00:00 -0300
 categories: deep learning
 short_description: "A word on contrastive learning and the recent success of unsupervised representation learning. We also build and explore SimCLR: A simple framework for contrastive learning."
+tags: machine-learning deep-learning representation-learning pytorch torchvision unsupervised-learning contrastive-loss simclr self-supervised self-supervised-learning
 reference_file: sim_contrastive_learning_ref
 image_url: "/assets/contrastive-self-supervised/cover.png"
 ---

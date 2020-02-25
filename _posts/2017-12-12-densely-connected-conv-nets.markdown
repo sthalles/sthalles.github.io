@@ -5,6 +5,7 @@ date:   2017-12-12 08:00:00 -0300
 categories: deep learning
 short_description: "DenseNets offer very scalable models that achieve very good accuracy and are easy to train. The key idea consists sharing feature maps within a block through direct connections between layers."
 image_url: "/assets/densenets/densenet_arch_overview.png"
+tags: machine-learning deep-learning representation-learning classification densenets tensorflow
 ---
 
 ## Intro

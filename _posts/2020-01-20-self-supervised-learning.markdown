@@ -5,6 +5,7 @@ date:   2020-01-20 08:00:00 -0300
 categories: deep learning
 short_description: "Notes on the current state of deep learning and how self-supervision may be the answer to more robust models"
 reference_file: self_supervised_ref
+tags: machine-learning deep-learning representation-learning self-supervised self-supervised-learning tensorflow pytorch
 image_url: "/assets/self-supervised/cover.jpeg"
 ---
 

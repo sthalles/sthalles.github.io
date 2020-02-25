@@ -5,6 +5,7 @@ date:   2017-7-31 08:00:00 -0300
 categories: deep learning
 short_description: "Supervised learning has been the center of most researching in deep learning in recent years. However, the necessity of creating models capable of learning from fewer or no labeled data is greater year by year."
 image_url: "/assets/semi-supervised/GAN_classifier.png"
+tags: machine-learning deep-learning representation-learning semi-supervised-learning tensorflow python gans generative-models
 ---
 
 ## Intro

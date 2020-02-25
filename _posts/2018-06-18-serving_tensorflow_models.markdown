@@ -5,6 +5,7 @@ date:   2018-06-18 08:00:00 -0300
 categories: deep learning
 short_description: "Putting Machine Learning (ML) models to production has been a recurrent topic. To address this concern, TensorFlow (TF) Serving is Google’s best bet for deploying ML models to production."
 image_url: "/assets/serving_tf_models/tf_serving_cover.jpeg"
+tags: machine-learning deep-learning production serving python tensorflow
 ---
 ## Introduction
 

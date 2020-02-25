@@ -5,6 +5,7 @@ date:   2019-08-08 08:00:00 -0300
 categories: machine learning
 short_description: "Time Series Forecasting is the use of statistical methods to predict future behavior based on a series of past data. Simply put, we can think of it as a bunch of values collected through time. In this post, we explore two decomposition methods: additive and multiplicative decomposition."
 image_url: "/assets/time-series-decomposition/cover.png"
+tags: machine-learning deep-learning timeseries timeseries-analysis timeseries-decomposition
 ---
 
 ## Introduction

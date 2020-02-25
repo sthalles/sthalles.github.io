@@ -5,6 +5,7 @@ date:   2017-06-07 10:00:00 -0300
 categories: deep learning
 short_description: "GANs are a kind of generative model in which two differentiable functions are locked in a game. The generator tries to reproduce data that come from some probability distribution. The discriminator gets to decide if its input comes from the generator or from the true training set."
 image_url: "/assets/dcgan/GANs.png"
+tags: machine-learning deep-learning representation-learning tensorflow python gans generative-models
 ---
 
 Let’s say there is this very cool party going on at your neighborhood that you really want to go. But, there is a problem. To get into the party you need a special ticket that was long sold out.
@@ -47,7 +48,7 @@ The discriminator, acts like a judge. It gets to decide if its input comes from 
 
 In summary, the game follows with:
 
-- The generator trying to maximize the probability of making the discriminator mistakes its inputs as real. 
+- The generator trying to maximize the probability of making the discriminator mistakes its inputs as real.
 - The discriminator guiding the generator to produce more realistic images.
 
 In the perfect equilibrium, the generator would capture the general training data distribution. As a result, the discriminator is always unsure of whether its inputs are real or not.
@@ -64,7 +65,7 @@ In the DCGAN paper, the authors describe the combination of some deep learning t
 The first emphasizes strided convolutions (instead of pooling layers) for both: increasing and decreasing feature's spatial dimensions. And the second normalizes the feature vectors to have zero mean and unit variance in all layers. This helps to stabilize learning and to deal with poor weight initialization problems.
 
 ### Generator
-The network has 4 convolutional layers. All followed by BN (except for the output layer) and Rectified Linear unit (ReLU) activations. It takes as input a random vector *z* (drawn from a normal distribution). After reshaping *z* to have a 4D shape, we feed it to the generator that starts a series of upsampling layers. 
+The network has 4 convolutional layers. All followed by BN (except for the output layer) and Rectified Linear unit (ReLU) activations. It takes as input a random vector *z* (drawn from a normal distribution). After reshaping *z* to have a 4D shape, we feed it to the generator that starts a series of upsampling layers.
 
 Each upsampling layer represents a transpose convolution operation with strides 2. ***Basically, every time we move the convolutional kernel by one pixel on the input feature map, we move it by 2 or more pixels on the output map***.
 
@@ -113,7 +114,7 @@ A regular ReLU function works by truncating negative values to 0. This has the e
 
 Leaky RELUs represent an attempt to solve the *dying ReLU”* problem. This situation occurs when the neurons get stuck in a state in which RELU units always output 0s for all inputs. For these cases, the gradients are completely shut to flow back through the network. This is especially important for GANs since the only way the generator has to learn is by receiving the gradients from the discriminator.
 
-The discriminator starts by receives a 32x32x3 image tensor. Opposite to the generator, the discriminator performs a series of strided 2 convolutions. Each, works by reducing the feature vector's spatial dimensions by half its size, also doubling the number of learned filters. 
+The discriminator starts by receives a 32x32x3 image tensor. Opposite to the generator, the discriminator performs a series of strided 2 convolutions. Each, works by reducing the feature vector's spatial dimensions by half its size, also doubling the number of learned filters.
 
 Finally, the discriminator needs to output probabilities. For that, we use the *Logistic Sigmoid* activation function on the final logits.
 
@@ -148,7 +149,7 @@ def discriminator(x, reuse=False, alpha=0.2, training=True):
         return out, logits
 {% endhighlight %}
 
-Note that in this framework, the discriminator acts as a regular binary classifier. Half of the time it receives images from the training set and the other half from the generator. 
+Note that in this framework, the discriminator acts as a regular binary classifier. Half of the time it receives images from the training set and the other half from the generator.
 
 Back to our adventure, to reproduce the party’s ticket, the only source of information you had was the feedback from our friend Bob. In other words, the quality of the feedback Bob provided to you at each trial was essential to get the job done.
 
@@ -158,9 +159,9 @@ This is how important the discriminator is. In fact, ***the generator will be as
 
 ### Losses
 
-Now, let’s describe the trickiest part of this architecture, the losses. First, we know the discriminator receives images from both, the training set and the generator. 
+Now, let’s describe the trickiest part of this architecture, the losses. First, we know the discriminator receives images from both, the training set and the generator.
 
-We want the discriminator to be able to distinguish between real and fake images. Every time we run a mini-batch through the discriminator, we get logits. These are the unscaled values from the model. 
+We want the discriminator to be able to distinguish between real and fake images. Every time we run a mini-batch through the discriminator, we get logits. These are the unscaled values from the model.
 
 However, we can divide the mini-batches that the discriminator receives in two types. The First, composed only with real images that come from the training set and the second, with only fake images a.k.a. the ones created by the generator.
 
@@ -201,7 +202,7 @@ def model_loss(input_real, input_z, output_dim, alpha=0.2, smooth=0.1):
     return d_loss, g_loss
 {% endhighlight %}
 
-Because both networks train at the same time, GANs also need two optimizers. Each one for minimizing the discriminator and generator’s loss functions respectively. 
+Because both networks train at the same time, GANs also need two optimizers. Each one for minimizing the discriminator and generator’s loss functions respectively.
 
 We want the discriminator to output probabilities close to 1 for real images and near 0 for fake images. To do that, the discriminator needs two losses. Therefor, the total loss for the discriminator is the sum of these two partial losses. ***One for maximizing the probabilities for the real images and another for minimizing the probability of fake images.***
 
@@ -210,9 +211,9 @@ We want the discriminator to output probabilities close to 1 for real images and
   <figcaption class="caption center"> Comparing real (left) and generated (right) SVHN sample images. Although some images look blured while some others are not recognizable, its noticible that the data structure was well captured by the model. </figcaption>
 </figure>
 
-In the beginning of training two interesting situations occur. First, the generator does not know how to create images that resembles the ones from the training set. And second, discriminator does not know how to categorize the images it receives as real or fake. 
+In the beginning of training two interesting situations occur. First, the generator does not know how to create images that resembles the ones from the training set. And second, discriminator does not know how to categorize the images it receives as real or fake.
 
-As a result, the discriminator receives two very distinct types of batches. One, composed of true images from the training set and another containing very noisy signals. As training progresses, the generator starts to output images that look closer to the images from the training set. That happens, because the generator trains to learn the data distribution that composes the training set images. 
+As a result, the discriminator receives two very distinct types of batches. One, composed of true images from the training set and another containing very noisy signals. As training progresses, the generator starts to output images that look closer to the images from the training set. That happens, because the generator trains to learn the data distribution that composes the training set images.
 
 At the same time, the discriminator starts to get real good at classifying samples as real or fake. ***As a consequence, the two types of mini-batches begin looking similar, in structure, to one another. That, as a result makes the discriminator unable to identify images as real or fake.***
 

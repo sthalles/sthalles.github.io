@@ -6,6 +6,7 @@ categories: deep learning
 short_description: "Lately, Generative Models are drawing a lot of attention. Much of that comes from Generative Adversarial Networks (GANs). Let's investigate some recent techniques for improving GAN training."
 reference_file: advanced_gans_ref
 image_url: "/assets/advanced_gans/cover.png"
+tags: machine-learning deep-learning tensorflow keras python generative-models gans attention 
 ---
 
 ## Introduction

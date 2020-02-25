@@ -5,6 +5,7 @@ date:   2019-02-16 08:00:00 -0300
 categories: machine learning
 short_description: "We can categorize ML models based on the way they classify data. There are two types: generative and discriminative methods. Let's dive deeper into one of the most popular discriminative models - Logistic Regression."
 image_url: "/assets/log_reg/cover.jpeg"
+tags: machine-learning logistic-regression linear-models python gradient-descent
 ---
 
 ## Introduction
