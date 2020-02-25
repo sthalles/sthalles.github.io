@@ -59,7 +59,11 @@ In simple terms, we can think of the contrastive task as trying to identify the 
 
 To understand SimCLR, let’s explore how it builds on the core components of the contrastive learning framework.
 
-Given an input image, we create 2 correlated copies of it, by applying 2 separate data augmentation operators. The transformations include (1) *random crop and resize*, (2) *random color distortions*, and (3) *random Gaussian blur*. The order of the operations is kept fixed, but since each operation has its own uncertainty, it makes the resulting views visually different. ***Note that since we apply 2 distinct augmentation functions on the same image, if we sample 5 images, we endup with $2 \times 5 = 10$ augmented observations in the batch***. See the visual concept below.
+Given an input image, we create 2 correlated copies of it, by applying 2 separate data augmentation operators. The transformations include (1) *random crop and resize*, (2) *random color distortions*, and (3) *random Gaussian blur*.
+
+{% gist b45564e4d1ae7166a66a208ed302de5a %}
+
+The order of the operations is kept fixed, but since each operation has its own uncertainty, it makes the resulting views visually different. ***Note that since we apply 2 distinct augmentation functions on the same image, if we sample 5 images, we endup with $2 \times 5 = 10$ augmented observations in the batch***. See the visual concept below.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/contrastive-self-supervised/positives-pairs.png" alt="Positive pairs">
