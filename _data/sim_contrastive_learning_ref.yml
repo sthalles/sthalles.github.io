@@ -1,0 +1,19 @@
+- authors: Chen, T., Kornblith, S., Norouzi, M., & Hinton, G.
+  year: 2020
+  title: A Simple Framework for Contrastive Learning of Visual Representations.
+  url: https://arxiv.org/pdf/2002.05709
+
+- authors: Ishan Misra, Laurens van der Maaten
+  year: 2019
+  title: Self-Supervised Learning of Pretext-Invariant Representations
+  url: https://arxiv.org/abs/1912.01991
+
+- authors: Kaiming He, Haoqi Fan, Yuxin Wu, Saining Xie, Ross Girshick
+  year: 2019
+  title: Momentum Contrast for Unsupervised Visual Representation Learning
+  url: https://arxiv.org/abs/1911.05722
+
+- authors: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+  year: 2015
+  title: Deep Residual Learning for Image Recognition
+  url: https://arxiv.org/abs/1512.03385

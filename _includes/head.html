@@ -5,10 +5,20 @@
   <meta name="keywords" content="Deep Learning, GANs, Tensorflow, Python, Machine Learning">
   <meta name="author" content="{{site.author}}">
   <meta name="google-site-verification" content="6NbRrOGjhUFX-V_BL_es7vZmZVbF0WHcvkjVD19sutw" />
-  
+
   <title>{% if page.title %}{{ page.title | escape }} - {{ site.title }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{{ site.path }}/css/main.css" >
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i" rel="stylesheet">
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>

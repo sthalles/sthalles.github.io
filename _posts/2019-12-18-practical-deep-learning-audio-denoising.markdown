@@ -16,7 +16,7 @@ Classical solutions for speech denoising usually use [generative modeling](https
 
 In this article, we tackle the problem of speech denoising using Convolutional Neural Networks (CNNs). Given a noisy input signal, we aim to build a statistical model that can extract the clean signal (the source) and return it to the user. Here, we focus on source separation of regular speech signals from 10 different types of noise often found in an urban street environment.
 
-You can check out the complete implementation on [my Github](https://github.com/sthalles/cnn_denoiser).
+You can check out the complete implementation on [my GitHub](https://github.com/sthalles/cnn_denoiser).
 
 ## The Data
 
