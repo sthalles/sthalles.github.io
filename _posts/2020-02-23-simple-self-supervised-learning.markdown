@@ -39,7 +39,7 @@ Let's explore how unsupervised contrastive learning works and have a closer look
 
 ## Contrastive Learning
 
-Contrastive methods aims to learn representations by enforcing similar elements to be equal and dissimilar elements to be different. In recent months, we have seen an explosion of unsupervised Deep Learning methods based on these principles. In fact, some self-supervised contrastive-based representations already match supervised-based features in linear classification benchmarks.
+Contrastive methods aim to learn representations by enforcing similar elements to be equal and dissimilar elements to be different. In recent months, we have seen an explosion of unsupervised Deep Learning methods based on these principles. In fact, some self-supervised contrastive-based representations already match supervised-based features in linear classification benchmarks.
 
 The core of contrastive learning is the Noise Contrastive Estimator (NCE) loss.
 
@@ -53,7 +53,7 @@ On the other hand, $x^-$ are examples dissimilar to $x$. The pair $(x, x^-)$ for
 
 The $sim(.)$ function is a similarity (distance) metric. It is responsible for minimizing the difference between the positives while maximizing the difference between positive and negatives. Often, $sim(.)$ is defined in terms of dot products or cosine similarities.
 
-Lastly, $g(.)$ is a convolution neural network encoder. Specifically, recent contrastive learning architectures use siamise networks to learn embeddings for positive and negative examples. These embeddigs are then passed as input to the contrastive loss.
+Lastly, $g(.)$ is a convolution neural network encoder. Specifically, recent contrastive learning architectures use siamese networks to learn embeddings for positive and negative examples. These embeddings are then passed as input to the contrastive loss.
 
 In simple terms, we can think of the contrastive task as trying to identify the positive example among a bunch of negatives.
 
@@ -72,7 +72,7 @@ Given an input image, we create 2 correlated copies of it, by applying 2 separat
 
 {% gist b45564e4d1ae7166a66a208ed302de5a %}
 
-The order of the operations is kept fixed, but since each operation has its own uncertainty, it makes the resulting views visually different. ***Note that since we apply 2 distinct augmentation functions on the same image, if we sample 5 images, we endup with $2 \times 5 = 10$ augmented observations in the batch***. See the visual concept below.
+The order of the operations is kept fixed, but since each operation has its own uncertainty, it makes the resulting views visually different. ***Note that since we apply 2 distinct augmentation functions on the same image, if we sample 5 images, we end up with $2 \times 5 = 10$ augmented observations in the batch***. See the visual concept below.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/contrastive-self-supervised/positives-pairs.png" alt="Positive pairs">
