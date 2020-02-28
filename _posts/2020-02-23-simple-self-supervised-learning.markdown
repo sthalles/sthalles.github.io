@@ -37,7 +37,7 @@ Fortunately, visual unsupervised representation learning has shown great promise
 
 Let's explore how unsupervised contrastive learning works and have a closer look at one major work on the area.
 
-## Constrastive Learning
+## Contrastive Learning
 
 Contrastive methods aims to learn representations by enforcing similar elements to be equal and dissimilar elements to be different. In recent months, we have seen an explosion of unsupervised Deep Learning methods based on these principles. In fact, some self-supervised contrastive-based representations already match supervised-based features in linear classification benchmarks.
 
