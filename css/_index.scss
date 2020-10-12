@@ -21,8 +21,9 @@ body {
   font-weight: $small-font-weight;
 }
 
-figcaption.center{
+figure>figcaption {
   text-align: center;
+  font-style: italic;
 }
 
 
