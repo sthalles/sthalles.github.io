@@ -132,7 +132,7 @@ You can see the [full description here](https://scikit-learn.org/stable/datasets
 
 We want to predict the **median value home price in $1000's**. These measurements are real values ranging from 5 to 50, and they represent the $b$ vector in our system of equations $Ax = b$. 
 
-As usual, the matrix has many more rows than columns. This means that we cannot invert $A$ to find the solution to $Ax = b$. Also, it drastically reduces the possibilities of finding a solution. Indeed, such a solution would only be possible if $b$ is a linear combination of the columns of $A$. However, using the SVD, we will be able to derive the pseudo-inverse $A^+$, to find the best approximate solution in terms of least squares -- ***which is the projection of the vector $b$ onto the subspace spaned by the columns of $A$.***
+As usual, the matrix has many more rows than columns. This means that we cannot invert $A$ to find the solution to $Ax = b$. Also, it drastically reduces the possibilities of finding a solution. Indeed, such a solution would only be possible if $b$ is a linear combination of the columns of $A$. However, using the SVD, we will be able to derive the pseudo-inverse $A^+$, to find the best approximate solution in terms of least squares -- ***which is the projection of the vector $b$ onto the subspace spanned by the columns of $A$.***
 
 The code is very simple to follow, and the results are excellent. Indeed, they are the best possible for a linear model.
 
