@@ -71,6 +71,8 @@ The matrices $U$ and $V^T$ have a very special property. They are ***unitary mat
 
 Note that, since the $\Sigma$ matrix is diagonal, only the first $n$ row diagonal values are worth keeping. Indeed the last $n$ rows of $\Sigma$  are filled with 0s. For this reason, it is very common to keep only the first $r \times r$ non-negative diagonal values of $\Sigma$, along with the corresponding $r$ columns and rows of $U$ and $V^T$ respectively. Note that $r = min(m, n)$. This is commonly referred to as the economy (or compact) SVD, and from this point on, we will assume the matrices $U$, $\Sigma$, and $V^T$ are derived from the economy procedure. 
 
+Quick note, it is very common to also truncate the SVD based on some criteria. Under some assumptions, it is possible to find an optimal threshold for suppressing some of the singular values with small magnitudes.
+
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/svd-for-regression/economy-svd-matrices.png" alt="C...">
   <figcaption>The economy SVD data matrices.</figcaption>
