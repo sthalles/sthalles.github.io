@@ -1,0 +1,19 @@
+- authors: Goodfellow, Ian and Bengio, Yoshua and Courville, Aaron
+  year: 2016
+  title: Deep learning
+  url: https://www.deeplearningbook.org/
+
+- authors: Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina
+  year: 2018
+  title: "Bert: Pre-training of deep bidirectional transformers for language understanding"
+  url: https://arxiv.org/abs/1810.04805
+
+- authors: Pennington, Jeffrey and Socher, Richard and Manning, Christopher D
+  year: 2014
+  title: "Glove: Global vectors for word representation"
+  url: https://www.aclweb.org/anthology/D14-1162/
+
+- authors: Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean
+  year: 2013
+  title: Distributed Representations of Words and Phrases and their Compositionality
+  url: https://arxiv.org/abs/1310.4546
