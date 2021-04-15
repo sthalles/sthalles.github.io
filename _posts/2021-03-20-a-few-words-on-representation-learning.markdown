@@ -151,9 +151,9 @@ More specifically, the recently developed field of self-supervised learning, whi
 
 Let us take [Bidirectional Encoder Representations from Transformers](#1) or BERT as an example. ***BERT is a deep unsupervised language representation model that learns contextual representations from unstructured text.*** 
 Context-free models such as [word2vec](#2) and [GloVe](#3) learn word embeddings without taking into consideration the context in which words appear.
-This is a limitation because a lot of words express different meanings depending the context they are used.
+This is a limitation because a lot of words express different meanings depending on the context they are used.
 Words like "bank" for instance, may show up in a financial-related context such as "bank account" or it may be used to describe the edges of a river.
-Differently, BERT learns representations based on the context in which words appear. As a result, BERT is able to learn richer semantically meaninnful representations that capture different meanings of words depending on their context.
+Differently, BERT learns representations based on the context in which words appear. As a result, BERT is able to learn richer semantically meaningful representations that capture different meanings of words depending on their context.
 
 Moreover, BERT is optimized by solving a particular kind of **self-supervised** task that does not require manually annotated data. 
 Namely, during training, a percentage of randomly chosen tokens are masked from the input sentence before going through the Transformer encoder.
@@ -179,7 +179,7 @@ Recent methods such as [Deep Clustering for Unsupervised Learning of Visual Feat
 These results suggest that combining clustering methods with self-supervised pretext tasks is a prominent technique.
 
 On the other hand, self-supervised learning is an approach to unsupervised learning that is concerned with learning semantically meaningful features from unlabeled data. 
-The first approaches to self-supervised learning regard devising a predictive task that can be solved by only exploring the characteristics present in the data.
+The first approach to self-supervised learning regards devising a predictive task that can be solved by only exploring the characteristics present in the data.
 This subtask, or pretext task, acts as a proxy that makes the network learn useful representations that can be used to ease the process of learning a different downstream tasks.
 
 While classic unsupervised methods do not use any labels during training, most of the proposed pretext tasks use the same framework and loss functions as classic supervised learning algorithms. 
@@ -189,6 +189,8 @@ Therefore, self-supervised pretext tasks also require labels for optimization. H
   <img class="img-responsive center-block" src="{{ site.url }}/assets/a-few-words-on-representation-learning/rotation-prediction.png" alt="....">
   <figcaption>Figure 9: Rotation prediction is one example of a prediction task that explores the characteristics of the data to devise supervised signals.</figcaption>
 </figure>
+
+Image Source: [Unsupervised Representation Learning by Predicting Image Rotations](https://arxiv.org/abs/1803.07728)
 
 ***In general, self-supervised pretext tasks consist of taking out some parts of the data and challenging the network to predict that missing part***. 
 It can be predicting the next word in the sentence based on the previous context or predicting the next frame of a video based on the preceding ones. 
