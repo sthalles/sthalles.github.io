@@ -1,8 +1,3 @@
-- authors: Goodfellow, Ian and Bengio, Yoshua and Courville, Aaron
-  year: 2016
-  title: Deep learning
-  url: https://www.deeplearningbook.org/
-
 - authors: Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina
   year: 2018
   title: "Bert: Pre-training of deep bidirectional transformers for language understanding"
@@ -17,3 +12,13 @@
   year: 2013
   title: Distributed Representations of Words and Phrases and their Compositionality
   url: https://arxiv.org/abs/1310.4546
+
+- authors: Mathilde Caron, Piotr Bojanowski, Armand Joulin, Matthijs Douze
+  year: 2018
+  title:   Deep Clustering for Unsupervised Learning of Visual Features
+  url: https://arxiv.org/abs/1807.05520
+
+- authors: Junnan Li, Pan Zhou, Caiming Xiong, Steven C.H. Hoi
+  year: 2020
+  title:   Prototypical Contrastive Learning of Unsupervised Representations
+  url: https://arxiv.org/abs/2005.04966
