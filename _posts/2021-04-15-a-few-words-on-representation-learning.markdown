@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "A Few Words on Representation Learning"
-date:   2021-03-10 08:00:00 -0300
+date:   2021-04-15 08:00:00 -0300
 categories: deep learning
 short_description: "Representation learning aims to map high-dimensional data to often dense, compact, and generalizable representations. These learned representations can transfer well to other tasks and have been the principal method to solve problems in which data annotations are hard or even impossible to get."
 tags: machine-learning deep-learning representation-learning self-supervised-learning contrastive-learning
