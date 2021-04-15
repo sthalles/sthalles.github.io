@@ -42,7 +42,7 @@ However, if the matrix has more columns than it has rows, we are likely dealing 
 
 Finally, by analogy, if we have a matrix $A$ with more rows than columns, we can view it as trying to span a very high-dimensional space with fewer vectors than we would need. For instance, picture a matrix with 6 rows and 2 columns. Here, we have a 6D space, but we only got 2 vectors to span it. It does not matter how much we try it, in the best case, we can only span a plane on 6D. And that is crucial because we only have a solution to $Ax = b$ if the vector $b$ is in the column space of $A$. But here, the column space of $A$ spans 2D subspace (a plane) on a much larger 6D space. This makes the probability of the vector $b$ to be in the subspace spanned by the columns of $A$ improbable. 
 
-To visualize how unlikely it is, picture a 3D space and a subspace spanned by two vectors (a plane in 3D). Now, imagine you choose 3 values at random. This will give you a point on the 3D space. Now, ask yourself: what is the probability that my randomly chosen point will be on the plane? 
+To visualize how unlikely it is, picture a 3D space and a subspace spanned by two vectors (a plane in 3D). Now, imagine you choose 3 values at random. This will give you a point on the 3D space. Now, ask yourself: what is the probability that my randomly chosen point will be on the plane?
 
 Nonetheless, in situations where we do not have a solution for a linear system of equations $Ax = b$ (or we have infinitely many solutions), we still want to do our best. And to do this, we need to find the best approximate solution. Here is where the SVD kicks in. 
 
