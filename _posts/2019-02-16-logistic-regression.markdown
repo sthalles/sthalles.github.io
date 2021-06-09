@@ -248,6 +248,19 @@ Discriminative models learn the class probabilities implicitly.
 
 For binary classification, Logistic Regression uses the sigmoid function to represent the posterior probabilities. For multiclass classification, it uses softmax.
 
-
-
 Thanks for reading!
+
+---
+
+Cite as:
+
+```
+@article{
+  silva2019logisticregression,
+  title={% raw %}{{% endraw %}{{page.title}}{% raw %}}{% endraw %},
+  author={% raw %}{{% endraw %}{{site.author}}{% raw %}}{% endraw %},
+  journal={% raw %}{{% endraw %}{{site.url}}{% raw %}}{% endraw %},
+  year={% raw %}{{% endraw %}{{page.date | date: "%Y"}}{% raw %}}{% endraw %}
+  url={% raw %}{{% endraw %}{{site.url}}{{page.url}}{% raw %}}{% endraw %}
+}
+```

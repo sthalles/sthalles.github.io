@@ -233,3 +233,18 @@ Since its creation, researches have been developing many techniques for training
 If you are curious to dig deeper in these subjects, I recommend: [Generative Models](https://blog.openai.com/generative-models/#gan)
 
 Enjoy!
+
+---
+
+Cite as:
+
+```
+@article{
+  silva2017adversarialnets,
+  title={% raw %}{{% endraw %}{{page.title}}{% raw %}}{% endraw %},
+  author={% raw %}{{% endraw %}{{site.author}}{% raw %}}{% endraw %},
+  journal={% raw %}{{% endraw %}{{site.url}}{% raw %}}{% endraw %},
+  year={% raw %}{{% endraw %}{{page.date | date: "%Y"}}{% raw %}}{% endraw %}
+  url={% raw %}{{% endraw %}{{site.url}}{{page.url}}{% raw %}}{% endraw %}
+}
+```

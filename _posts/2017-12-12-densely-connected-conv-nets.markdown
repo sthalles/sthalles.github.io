@@ -147,3 +147,18 @@ def densenet_X(inputs,
 ## Concluding
 
 DenseNets offer very scalable models that achieve very good accuracy and are easy to train. The key idea consists sharing feature maps within a block through direct connections between layers. Moreover, it demands fewer parameters than a number of other models like ResNets, Inception Networks, and others while offering equally or improved accuracy on various classification datasets. The DenseNet library described here implements all 4 architectures used to train on ImageNet plus a custom constructor in which any network variation can be experimented. Feel free to checkout the [code on Github](https://github.com/sthalles/dense-net) and make pull requests with any suggestion.
+
+---
+
+Cite as:
+
+```
+@article{
+  silva2017densenets,
+  title={% raw %}{{% endraw %}{{page.title}}{% raw %}}{% endraw %},
+  author={% raw %}{{% endraw %}{{site.author}}{% raw %}}{% endraw %},
+  journal={% raw %}{{% endraw %}{{site.url}}{% raw %}}{% endraw %},
+  year={% raw %}{{% endraw %}{{page.date | date: "%Y"}}{% raw %}}{% endraw %}
+  url={% raw %}{{% endraw %}{{site.url}}{{page.url}}{% raw %}}{% endraw %}
+}
+```

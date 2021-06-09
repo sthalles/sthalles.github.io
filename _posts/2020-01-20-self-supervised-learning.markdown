@@ -167,3 +167,19 @@ In short, by solving the pretext task, the network will learn semantically meani
 Self-supervised learning allows us to learn good representations without using large annotated databases. Instead, we can use unlabeled data (which is abundant) and optimize pre-defined pretext tasks. We can then use these features to learn new tasks in which data is scarce.
 
 **Thanks for reading!**
+
+
+---
+
+Cite as:
+
+```
+@article{
+  silva2020selfsupervised,
+  title={% raw %}{{% endraw %}{{page.title}}{% raw %}}{% endraw %},
+  author={% raw %}{{% endraw %}{{site.author}}{% raw %}}{% endraw %},
+  journal={% raw %}{{% endraw %}{{site.url}}{% raw %}}{% endraw %},
+  year={% raw %}{{% endraw %}{{page.date | date: "%Y"}}{% raw %}}{% endraw %}
+  url={% raw %}{{% endraw %}{{site.url}}{{page.url}}{% raw %}}{% endraw %}
+}
+```

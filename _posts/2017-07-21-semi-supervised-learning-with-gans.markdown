@@ -250,3 +250,18 @@ In the [Improved Techniques for Training GANs](https://arxiv.org/abs/1606.03498)
 ## Concluding
 
 As machine learning grows, attempts to solve already establish problems using less labeled data are key for breaking the unsupervised learning obstacles machine learning is facing right now. In this scenario, GANs pose a real alternative for learning complicated tasks with less labeled samples. However, the distance between semi-supervised and fully supervised learning solutions is still far from being equal, but we certainly can expect this gap to become shorter as new approaches come in to play.  
+
+---
+
+Cite as:
+
+```
+@article{
+  silva2017semisupervised,
+  title={% raw %}{{% endraw %}{{page.title}}{% raw %}}{% endraw %},
+  author={% raw %}{{% endraw %}{{site.author}}{% raw %}}{% endraw %},
+  journal={% raw %}{{% endraw %}{{site.url}}{% raw %}}{% endraw %},
+  year={% raw %}{{% endraw %}{{page.date | date: "%Y"}}{% raw %}}{% endraw %}
+  url={% raw %}{{% endraw %}{{site.url}}{{page.url}}{% raw %}}{% endraw %}
+}
+```

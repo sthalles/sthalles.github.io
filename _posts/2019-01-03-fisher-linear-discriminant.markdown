@@ -183,3 +183,18 @@ This article is based on **chapter 4.1.6** of [Pattern Recognition and Machine L
 *Book by Christopher Bishop*
 
 Thanks for reading!
+
+---
+
+Cite as:
+
+```
+@article{
+  silva2019fisherdiscriminant,
+  title={% raw %}{{% endraw %}{{page.title}}{% raw %}}{% endraw %},
+  author={% raw %}{{% endraw %}{{site.author}}{% raw %}}{% endraw %},
+  journal={% raw %}{{% endraw %}{{site.url}}{% raw %}}{% endraw %},
+  year={% raw %}{{% endraw %}{{page.date | date: "%Y"}}{% raw %}}{% endraw %}
+  url={% raw %}{{% endraw %}{{site.url}}{{page.url}}{% raw %}}{% endraw %}
+}
+```

@@ -198,3 +198,18 @@ Now we can fetch and enjoy the results.
 </figure>
 
 Hope you liked this article. Thanks for reading!
+
+---
+
+Cite as:
+
+```
+@article{
+  silva2018tfdeploy,
+  title={% raw %}{{% endraw %}{{page.title}}{% raw %}}{% endraw %},
+  author={% raw %}{{% endraw %}{{site.author}}{% raw %}}{% endraw %},
+  journal={% raw %}{{% endraw %}{{site.url}}{% raw %}}{% endraw %},
+  year={% raw %}{{% endraw %}{{page.date | date: "%Y"}}{% raw %}}{% endraw %}
+  url={% raw %}{{% endraw %}{{site.url}}{{page.url}}{% raw %}}{% endraw %}
+}
+```

@@ -213,3 +213,18 @@ In fact, the gap between supervised and unsupervised pre-training has never been
 In the next piece, we are going to explore the landscape of self-supervised learning methods. We will go deeper into some of the most successful implementations and discuss the current state of the field.
 
 **Thanks for reading!**
+
+---
+
+Cite as:
+
+```
+@article{
+  silva2021reprlearning,
+  title={% raw %}{{% endraw %}{{page.title}}{% raw %}}{% endraw %},
+  author={% raw %}{{% endraw %}{{site.author}}{% raw %}}{% endraw %},
+  journal={% raw %}{{% endraw %}{{site.url}}{% raw %}}{% endraw %},
+  year={% raw %}{{% endraw %}{{page.date | date: "%Y"}}{% raw %}}{% endraw %}
+  url={% raw %}{{% endraw %}{{site.url}}{{page.url}}{% raw %}}{% endraw %}
+}
+```

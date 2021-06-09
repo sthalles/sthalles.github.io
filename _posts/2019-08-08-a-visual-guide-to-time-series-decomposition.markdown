@@ -192,3 +192,18 @@ It is important to note that simple decomposition methods have some drawbacks. H
 Also, **the seasonal pattern estimates are assumed to repeat every year.** This can be a problem for longer series where the patterns might change. You can see this assumption on both decomposition plots. Note how the additive and multiplicative seasonal patterns repeat over time. There are more robust methods like *Seasonal and Trend decomposition using Loess - STL -* that addresses some of these problems.
 
 **Thanks for reading!**
+
+---
+
+Cite as:
+
+```
+@article{
+  silva2019visualtimeseries,
+  title={% raw %}{{% endraw %}{{page.title}}{% raw %}}{% endraw %},
+  author={% raw %}{{% endraw %}{{site.author}}{% raw %}}{% endraw %},
+  journal={% raw %}{{% endraw %}{{site.url}}{% raw %}}{% endraw %},
+  year={% raw %}{{% endraw %}{{page.date | date: "%Y"}}{% raw %}}{% endraw %}
+  url={% raw %}{{% endraw %}{{site.url}}{{page.url}}{% raw %}}{% endraw %}
+}
+```
