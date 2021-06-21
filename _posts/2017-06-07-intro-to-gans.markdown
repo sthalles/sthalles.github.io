@@ -240,7 +240,7 @@ Cite as:
 
 ```
 @article{
-  silva2017adversarialnets,
+  silva2017GANs,
   title={% raw %}{{% endraw %}{{page.title}}{% raw %}}{% endraw %},
   author={% raw %}{{% endraw %}{{site.author}}{% raw %}}{% endraw %},
   journal={% raw %}{{% endraw %}{{site.url}}{% raw %}}{% endraw %},
