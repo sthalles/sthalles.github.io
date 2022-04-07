@@ -32,6 +32,8 @@ gems:
 exclude:
   - Gemfile
   - Gemfile.lock
+  - vendor
+
 sass:
   # loading path from site root
   # default to _sass
