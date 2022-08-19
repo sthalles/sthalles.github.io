@@ -3,6 +3,7 @@
 {% include head.html %}
 
 <body ng-app="MyBlog">
+  
   {% include header.html %}
 
   <div class="content-container">
@@ -34,6 +35,14 @@
       {%if page.reference_file == "self_supervised_pretext_task_learning_ref"%}
       {% include spotlight.html participants=site.data.self_supervised_pretext_task_learning_ref%}
       {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  {%if page.publications_file%}
+  <div class="publictions-section-backcolor">
+    <div class="content-container">
+      {% include publications.html participants=site.data.publications_ref%}
     </div>
   </div>
   {% endif %}

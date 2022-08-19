@@ -1,0 +1,26 @@
+
+{% for person in include.participants %}
+
+<div class="row publication">
+
+   <div class="col-sm-4"> 
+      <img class="img-responsive" src="../assets/publications/{{person.cover}}">
+   </div>
+
+   <div class="col-sm-8">
+      <div class="row">
+         <h3><a class="dark" href="{{ person.url | relative_url }}">{{ person.title | escape }}</a></h3>
+      </div>
+      
+      <div class="row"> 
+         <span> {{person.authors}} </span> 
+      </div>
+
+      <div class="row"> 
+         <span class="post-date"> @ {{person.at}}, {{ person.year }} </span>
+      </div>
+   </div>
+   
+</div>
+
+{% endfor %}

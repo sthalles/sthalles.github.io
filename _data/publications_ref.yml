@@ -1,0 +1,13 @@
+- authors: Thalles Santos Silva, Adín Ramírez Rivera
+  year: 2021
+  title: Consistent Assignment for Representation Learning
+  url: https://openreview.net/forum?id=QNO8mhqNmJh
+  at: Energy Based Models Workshop - ICLR 2021
+  cover: carl_ebm.png
+
+- authors: Thalles Santos Silva, Adín Ramírez Rivera
+  year: 2021
+  title: Representation Learning via Consistent Assignment of Views to Clusters
+  url: https://arxiv.org/abs/2112.15421
+  at: 37th ACM/SIGAPP Symposium on Applied Computing (SAC'22).
+  cover: carl_sac.png

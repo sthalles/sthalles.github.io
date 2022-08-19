@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  blog:
+    build: ./
+    volumes:
+      - ./:/workspace/blog
+    ports:
+      - "4000:4000"
