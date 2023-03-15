@@ -22,8 +22,10 @@ body {
 }
 
 figure>figcaption {
+  padding-top: 8px !important;
   text-align: center;
   font-style: italic;
+  font-size: $small-font-size;
 }
 
 

@@ -12,8 +12,8 @@ $base-font-weight:          300 !default;
 $small-font-weight:         200 !default;
 $large-font-weight:         400 !default;
 $base-font-size:            18px !default;
-$small-font-size:           $base-font-size * 0.80 !default;
-$very-small-font-size:      $base-font-size * 0.65 !default;
+$small-font-size:           $base-font-size * 0.90 !default;
+$very-small-font-size:      $base-font-size * 0.70 !default;
 $large-font-size:           $base-font-size * 1.25 !default;
 $base-line-height:          1.5 !default;
 $spacing-unit:              30px !default;
@@ -30,7 +30,7 @@ $primary-color-darker800:   #37474F !default;
 $primary-color-darker900:   #263238 !default;
 
 $text-color_:               #263238 !default;
-$primary-text-color:        lighten($text-color_, 13%) !default;
+$primary-text-color:        lighten($text-color_, 5%) !default;
 $secondary-text-color:      lighten($text-color_, 46%) !default;
 $disabled-text-color:       lighten($text-color_, 62%) !default;
 

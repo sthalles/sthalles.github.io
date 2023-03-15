@@ -1,0 +1,9 @@
+.publictions-section-backcolor {
+    background-color: $primary-color-lighter50;
+    padding-top: 18px !important; // the title is a <h3> element that already has margin
+    padding-bottom: 15px !important;
+    font-weight: $base-font-weight;
+    font-size: $small-font-size !important;
+    color: red !important;
+  }
+  
