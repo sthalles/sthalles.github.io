@@ -26,6 +26,8 @@ However, we will not focus on NLP applications. Instead, we will implement and d
 
 Because the Transformer was designed to handle NLP tasks, the intuitive understanding of its building blocks is more straightforward when dealing with text. Nevertheless, many of the same intuitions that apply to NLP also translate well to image data, and we will make the bridge between NLP and vision as much as possible. 
 
+Before we proceed, [check out the complete implementation of the vision Transformer in PyTorch.](https://github.com/sthalles/vision-transformer)
+
 *This will be a long one, so sit tight and enjoy.*
 
 ## From Tokens to Embeddings
