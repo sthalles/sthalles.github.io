@@ -1,15 +1,20 @@
 FROM ubuntu:focal
 
 RUN apt-get update
-RUN apt-get install -y build-essential ruby-full
+RUN apt-get install -y ruby-full build-essential zlib1g-dev
 
-COPY ./ /workspace/blog
-WORKDIR /workspace/blog
+SHELL ["/bin/bash", "-c"] 
+RUN echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
+RUN echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
+RUN echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
+RUN source ~/.bashrc
 
-RUN gem install jekyll bundler
+RUN gem install jekyll -v 3.1.2
+RUN gem install bundler
+
+COPY ./ /workspace/sthalles.github.io/
+WORKDIR /workspace/sthalles.github.io/
 RUN bundle install
-
-CMD ["bundle", "exec", "jekyll", "serve", "--livereload", "--host", "0.0.0.0"]
 
 ARG UID=10264
 ARG GID=1000
@@ -20,3 +25,4 @@ RUN if [ $GNAME != users ]; then groupadd --gid $GID $GNAME; fi && \
     echo "$USERNAME:$USERNAME" | chpasswd && \
     adduser $USERNAME sudo
 
+CMD ["bundle", "exec", "jekyll", "serve", "--livereload", "--host", "0.0.0.0"]

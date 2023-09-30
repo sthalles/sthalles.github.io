@@ -1,3 +1,10 @@
+- authors: Thalles Santos Silva, Helio Pedrini, Adín Ramírez Rivera
+  year: 2023
+  title: Self-supervised Learning of Contextualized Local Visual Embeddings
+  url: https://openreview.net/forum?id=wGCimyErJ6
+  at: 4th Visual Inductive Priors for Data-Efficient Deep Learning Workshop
+  cover: clove_iccvw.png
+
 - authors: Thalles Santos Silva, Adín Ramírez Rivera
   year: 2021
   title: Consistent Assignment for Representation Learning
@@ -9,5 +16,6 @@
   year: 2021
   title: Representation Learning via Consistent Assignment of Views to Clusters
   url: https://arxiv.org/abs/2112.15421
-  at: 37th ACM/SIGAPP Symposium on Applied Computing (SAC'22).
+  at: 37th ACM/SIGAPP Symposium on Applied Computing (SAC'22)
   cover: carl_sac.png
+
