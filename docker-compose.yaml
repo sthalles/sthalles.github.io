@@ -1,0 +1,6 @@
+webapp:
+  image: sthallesgithubio-blog
+  ports:
+    - "4000:4000"
+  volumes:
+    - "/home/thalles/workspace/sthalles.github.io/:/workspace/sthalles.github.io/"
