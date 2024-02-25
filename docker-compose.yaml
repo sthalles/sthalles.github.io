@@ -1,6 +1,9 @@
-webapp:
-  image: sthallesgithubio-blog
-  ports:
-    - "4000:4000"
-  volumes:
-    - "/home/thalles/workspace/sthalles.github.io/:/workspace/sthalles.github.io/"
+version: '3'
+
+services:
+  blog:
+    build: bundle exec jekyll serve --livereload --host "0.0.0.0"
+    volumes:
+      - ./:/workspace/sthalles.github.io/
+    ports:
+      - "4000:4000"

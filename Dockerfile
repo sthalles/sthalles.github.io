@@ -10,7 +10,7 @@ RUN echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
 RUN source ~/.bashrc
 
 RUN gem install jekyll -v 3.1.2
-RUN gem install bundler
+RUN gem install bundler -v 2.4.22
 
 COPY ./ /workspace/sthalles.github.io/
 WORKDIR /workspace/sthalles.github.io/
