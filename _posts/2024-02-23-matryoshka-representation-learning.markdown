@@ -122,8 +122,8 @@ Similarly, assuming a representation $z \in \mathbb{R}^{2048}$ from a ResNet-50 
 
 Then, for each $m \in \mathcal{M}$, we sample a subset containing the first $m$ components of $z$, and indenpendely optimize the sub-representation $$z_{[1:m]}$$ using a separate classification head with parameters $\mathbf{W}^{(m)} \in \mathbb{R}^{m \times C}$ and loss function.
 
-Then, we combine the individual loss terms and minimize: 
-<p style="text-align: center;">$$\mathcal{L}_{MRL} = \frac{1}{N} \sum_i^N \sum_{m \in \mathcal{M}}  \mathcal{L} \left ( \mathbf{W}^{(m)} \cdot f(x_i, \theta) \right )$$.</p>
+Then, we combine the individual loss terms and minimize 
+<p style="text-align: center;">$$\mathcal{L}_{MRL} = \frac{1}{N} \sum_i^N \sum_{m \in \mathcal{M}}  \mathcal{L} \left ( \mathbf{W}^{(m)} \cdot f(x_i, \theta) \right ).$$</p>
 
 ## Conclusions
 
