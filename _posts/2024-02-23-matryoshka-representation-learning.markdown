@@ -110,7 +110,7 @@ Following, the third and fourth loss terms operate over the first $m=\frac{d}{4}
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/matryoshka-representation-learning/loss_3_4.png" alt="...">
-  <figcaption>Figure 5 - Following, we keep decreasing the representation subset size by halving the remaining feature values until a minimum capacity size is reached.</figcaption>
+  <figcaption>Figure 6 - Following, we keep decreasing the representation subset size by halving the remaining feature values until a minimum capacity size is reached.</figcaption>
 </figure>
 
 The process of consistently halving the representation vector $z$ and using its first components continues until a minimum capacity, defined as a hyperparameter, is reached.
