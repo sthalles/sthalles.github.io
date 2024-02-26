@@ -4,7 +4,7 @@ title:  "Matryoshka Representation Learning"
 date:   2024-02-23 08:00:00 -0300
 categories: deep learning
 short_description: "Matryoshka Representation Learning (MRL) is a flexible representation technique to learn representations by enforcing a course-to-fine structure over the embeddings by encoding information at multiple levels of granularity. Each granularity level comprises the first $m$ feature components of $z$. After training, users can choose different granularities of a representation based on the best use case while trading off the minimum accuracy possible."
-tags: machine-learning deep-learning
+tags: representation-learning openai embeddings machine-learning deep-learning
 image_url: "/assets/matryoshka-representation-learning/cover.png"
 ---
 
