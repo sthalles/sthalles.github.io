@@ -3,7 +3,7 @@ layout: post
 title:  "Matryoshka Representation Learning"
 date:   2024-02-23 08:00:00 -0300
 categories: deep learning
-short_description: "Matryoshka Representation Learning (MRL) is a flexible representation learning technique that learns representations by enforcing a course-to-fine structure over the embedding vector $z$ by encoding information at multiple granularities. Each granularity comprises the first $m$ feature components of $z$. After training, users can choose different granularities of a representation based on the best use case while trading off the minimum accuracy possible."
+short_description: "Matryoshka Representation Learning (MRL) is a flexible representation technique to learn representations by enforcing a course-to-fine structure over the embeddings by encoding information at multiple levels of granularity. Each granularity level comprises the first $m$ feature components of $z$. After training, users can choose different granularities of a representation based on the best use case while trading off the minimum accuracy possible."
 tags: machine-learning deep-learning
 image_url: "/assets/matryoshka-representation-learning/cover.png"
 ---
@@ -30,6 +30,7 @@ The pre-trained representations can be used in a variety of ways, such as solvin
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/matryoshka-representation-learning/supervised-net.png" alt="...">
+  <figcaption>Figure 1 - Supervised learning with deep neural networks. The perceptual input (audio spectrogram) is fed to a neural network, which outputs a vector representation $z$. The representation is fed to a classifier layer, which outputs probability distributions over the set of class labels.</figcaption>
 </figure>
 
 Optionally, one might want to fine-tune (gradually change) the encoder parameters $\theta$ to learn a new downstream task. This technique is called ***fine-tuning*** and is one of the most important concepts of deep learning that powers innumerable applications in industry and academia.
@@ -52,6 +53,7 @@ Thus, the ResNet-50 provided a code with a $73.5$ compression rate.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/matryoshka-representation-learning/representation-learning.png" alt="...">
+  <figcaption>Figure 2 - Deep learning models learn representations by solving tasks. These representations may be transferred to solve diverse tasks in different domains.</figcaption>
 </figure>
 
 Note that the ***information within the embedding is diffused across the vector***.
@@ -76,6 +78,8 @@ Each task optimizes the first $m \in \mathcal{M}$ feature components of $z$ such
 The image below depicts the learning strategy.
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/matryoshka-representation-learning/mrl-archtecture.png" alt="...">
+  <figcaption>Figure 3 -  Matryouska Representations Learning architecture overview. MRL poses a course-to-grain structure on the learned embedding by devising multiple optimization problems over continuous subsets of the original representation vector $z$.</figcaption>
+
 </figure>
 
 #### Let's break it down step by step.
@@ -90,6 +94,7 @@ Here, the loss operates over the first $m = d$ feature components of $z$.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/matryoshka-representation-learning/loss_1.png" alt="...">
+  <figcaption>Figure 4 - The first loss term operates over the entire vector embedding $z$.</figcaption>
 </figure>
 
 Now, things get more interesting. 
@@ -98,12 +103,14 @@ In other words, it operates over the first half feature values of $z$, denoted b
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/matryoshka-representation-learning/loss_2.png" alt="...">
+  <figcaption>Figure 5 - The second loss term operates over the first half of the features of $z$.</figcaption>
 </figure>
 
 Following, the third and fourth loss terms operate over the first $m=\frac{d}{4}$ and $m=\frac{d}{8}$ components of $z$, respectively.
 
 <figure>
   <img class="img-responsive center-block" src="{{ site.url }}/assets/matryoshka-representation-learning/loss_3_4.png" alt="...">
+  <figcaption>Figure 5 - Following, we keep decreasing the representation subset size by halving the remaining feature values until a minimum capacity size is reached.</figcaption>
 </figure>
 
 The process of consistently halving the representation vector $z$ and using its first components continues until a minimum capacity, defined as a hyperparameter, is reached.
