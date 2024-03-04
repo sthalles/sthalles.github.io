@@ -11,7 +11,7 @@ image_url: "/assets/matryoshka-representation-learning/cover.png"
 ## Preliminaries
 
 The task of representation learning is to find an optimal code that maintains relevant information from the input. 
-Given a dataset $\mathcal{X}$ and a set of possible labels $\mathcal{Y}$, the goal is to learn a $d$-dimentional representations vector $z \in \mathbb{R}^d$ by learning a mapping function $f(x, \theta): \mathcal{X} \rightarrow \mathbb{R}^d$, where $f$ is a neural network with learnable paraeters $\theta$ such as a CNN ([He et al. 2016](https://arxiv.org/abs/1512.03385))[^2] or a ([Dosovitskiy et al. 2020](https://arxiv.org/abs/2010.11929))[^3]. 
+Given a dataset $\mathcal{X}$ and a set of possible labels $\mathcal{Y}$, the goal is to learn a $d$-dimentional representations vector $z \in \mathbb{R}^d$ by learning a mapping function $f(x, \theta): \mathcal{X} \rightarrow \mathbb{R}^d$, where $f$ is a neural network with learnable paraeters $\theta$ such as a Convolutional Neural Network (CNN) ([He et al. 2016](https://arxiv.org/abs/1512.03385))[^2] or a Transformer ([Dosovitskiy et al. 2020](https://arxiv.org/abs/2010.11929))[^3]. 
 
 This framework works in supervised and unsupervised settings. Given a point observation $x \in \mathcal{X}$, we can get a representation of $x$ by forwarding it through the neural network $f$ such that $z = f(x)$, we omit the parameters for simplicity.
 
