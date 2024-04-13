@@ -1,3 +1,10 @@
+- authors: Thalles Santos Silva, Adín Ramírez Rivera
+  year: 2023
+  title: Representation Learning via Consistent Assignment of Views over Random Partitions
+  url: https://arxiv.org/abs/2310.12692
+  at: Thirty-seventh Annual Conference on Neural Information Processing Systems (NeurIPS)
+  cover: carp_overview.png
+
 - authors: Thalles Santos Silva, Helio Pedrini, Adín Ramírez Rivera
   year: 2023
   title: Self-supervised Learning of Contextualized Local Visual Embeddings
