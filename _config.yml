@@ -52,6 +52,6 @@ kramdown:
   input: GFM
 permalink: /:title/
 google_analytics: UA-100678030-1
-disqus:
-  shortname: sthalles-github-io
-allow_sharing: true
+# disqus:
+#   shortname: sthalles-github-io
+# allow_sharing: true

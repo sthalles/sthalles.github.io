@@ -9,6 +9,8 @@ RUN echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
 RUN echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
 RUN source ~/.bashrc
 
+
+RUN gem install ffi -v 1.16.3
 RUN gem install jekyll -v 3.1.2
 RUN gem install bundler -v 2.4.22
 
